@@ -90,46 +90,43 @@ export default function Navbar(): JSX.Element {
       >
         <Link
           href="/"
-          className="flex items-center gap-3 px-3 py-2 rounded-xl"
+          className="flex items-center gap-2 px-3 py-2 md:gap-3 md:px-4 md:py-2.5 rounded-xl"
           style={{
-            background: "rgba(10,22,40,0.6)",
-            backdropFilter: "blur(8px)",
-            border: "1px solid rgba(240,165,0,0.2)",
+            background: 'rgba(10,22,40,0.7)',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(240,165,0,0.4)',
+            boxShadow: '0 0 12px rgba(240,165,0,0.15)',
           }}
         >
-          <div
-            className="relative overflow-hidden bg-white px-3 py-2 rounded-xl"
-            style={{ width: 52, height: 52 }}
-          >
+          <div className="relative w-10 h-10 md:w-14 md:h-14">
             <Image
               src="/logo.png"
               alt="Fortune Kraft Consultancy"
               fill
-              sizes="52px"
-              className="object-contain"
+              sizes="(max-width: 768px) 40px, 56px"
+              className="object-contain bg-white rounded-xl"
               priority
+              style={{ mixBlendMode: 'screen' }}
             />
           </div>
-
           <span className="hidden md:block leading-tight">
             <span
               className="block font-display font-bold text-xl tracking-wide"
               style={{
-                background:
-                  "linear-gradient(90deg, #c47f00 0%, #F0A500 25%, #FFE566 50%, #F0A500 75%, #c47f00 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                filter: "drop-shadow(0 0 8px rgba(240,165,0,0.35))",
+                background: 'linear-gradient(90deg, #c47f00 0%, #F0A500 30%, #FFE566 55%, #F0A500 75%, #c47f00 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                filter: 'drop-shadow(0 0 10px rgba(240,165,0,0.4))',
               }}
             >
               FortuneKraft
             </span>
             <span
-              className="block text-sm tracking-[0.3em] uppercase font-sans"
+              className="block text-[11px] tracking-[0.35em] uppercase font-sans"
               style={{
-                color: "rgba(240,165,0,0.6)",
-                textShadow: "0 0 12px rgba(240,165,0,0.2)",
+                color: 'rgba(240,165,0,0.65)',
+                textShadow: '0 0 12px rgba(240,165,0,0.25)',
               }}
             >
               Consultancy

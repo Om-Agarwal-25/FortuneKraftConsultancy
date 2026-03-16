@@ -4,11 +4,14 @@ import { Facebook, Twitter, Instagram, Linkedin, ShieldCheck, Mail, Phone, MapPi
 import type { LucideIcon } from 'lucide-react'
 import type { NavLink } from '@/types'
 
-const QUICK_LINKS: NavLink[] = [
-  { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/about' },
-  { label: 'Careers', href: '/careers' },
-  { label: 'Contact', href: '/contact' },
+const LEGAL_LINKS: NavLink[] = [
+  { label: 'Terms & Conditions', href: '/legal' },
+  { label: 'Disclaimer', href: '/legal#disclaimer' },
+  { label: 'Privacy Policy', href: '/legal#privacy' },
+  { label: 'Refund Policy', href: '/cancellation-policy' },
+  { label: 'Cancellation Policy', href: '/cancellation-policy' },
+  { label: 'Investor Charter', href: '/investor-charter' },
+  { label: 'Disclosure', href: '/disclosure' },
 ]
 
 const SERVICE_LINKS: NavLink[] = [
@@ -66,11 +69,11 @@ export default function Footer(): JSX.Element {
             </div>
           </div>
 
-          {/* Quick Links Column */}
+          {/* Legal Links Column */}
           <div>
-            <h3 className="text-gold font-display text-xl mb-6">Quick Links</h3>
+            <h3 className="text-gold font-display text-xl mb-6">Legal & Compliance</h3>
             <ul className="flex flex-col gap-3 border-l border-white/10 pl-4">
-              {QUICK_LINKS.map((link) => (
+              {LEGAL_LINKS.map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="text-gray-400 hover:text-white transition-colors text-sm">
                     {link.label}
@@ -107,7 +110,7 @@ export default function Footer(): JSX.Element {
             </div>
             <div className="flex gap-3 text-gray-400 text-sm items-center">
               <Mail size={18} className="text-gold flex-shrink-0" />
-              <span>fortunekraftconsultancy@gmail.com</span>
+              <span>fortunekraftconcultancy@gmail.com</span>
             </div>
 
             <div className="mt-4 p-4 rounded-xl bg-navy border border-white/10 flex items-start gap-3">
@@ -118,6 +121,13 @@ export default function Footer(): JSX.Element {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Regulatory Disclosure Banner */}
+        <div className="text-center text-xs text-gray-500 py-3 mb-2 border-t border-white/5">
+          Market Risks (“Ritesh Agarwal Research Analyst”) Does Not Provide Only Any Assured Return/Garunteed Return/Profit services, 
+          any Profit Sharing Services and Services Which are not mentioned on Company Website Please Trade Only a Company SMS With Proper Stop Loss. 
+          We never ask for Demat Detail From Anyone Please ask If anyone talks about these services +91 70301 51276.
         </div>
 
         {/* Bottom Bar */}

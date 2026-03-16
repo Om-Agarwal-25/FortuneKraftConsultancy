@@ -1,5 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import dynamic from "next/dynamic";
+
+const HeroChart = dynamic(() => import("@/components/HeroChart"), { ssr: false })
 import {
   ShieldCheck,
   TrendingUp,
@@ -98,52 +101,80 @@ export default function Home(): JSX.Element {
   return (
     <div className="flex flex-col min-h-screen">
       {/* SECTION 1: HERO */}
-      <section className="relative min-h-screen bg-gradient-to-br from-[#0A1628] to-[#1a3a5c] flex flex-col justify-center overflow-hidden pt-20">
-        <div
-          className="absolute inset-0 z-0 opacity-10"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 2px 2px, rgba(240,165,0,0.4) 1px, transparent 0)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-        <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold bg-gold/10 mb-8">
-            <ShieldCheck className="text-gold" size={19} />
-            <span className="text-gold font-medium text-sm">
-              SEBI Registered Research Analyst
-            </span>
-          </div>
-          <p className="text-gold text-md tracking-wider -mt-6 mb-8">
-            SEBI Reg. No: INH000025221
-          </p>
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-white font-bold leading-tight mb-6 max-w-4xl">
-            Craft Your <span className="text-gradient">Financial</span> Future
-          </h1>
-          <p className="font-sans text-lg text-gray-300 max-w-[600px] mb-8 leading-relaxed">
-            Fortune Kraft Consultancy delivers expert equity research,
-            high-accuracy trade calls, and real-time alerts to help you navigate
-            Indian markets with confidence.
-          </p>
+      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-32 pb-24 md:pt-36">
+        {/* Stock market background image */}
+        <div className="absolute inset-0 z-0 min-h-full">
+          <Image
+            src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1920&q=80"
+            alt="Stock market trading"
+            fill
+            className="object-cover object-center"
+            priority
+            sizes="100vw"
+          />
+          {/* Dark overlay so text remains readable */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.85) 50%, rgba(10,22,40,0.75) 100%)',
+            }}
+          />
+        </div>
 
-          <HeroButtons />
+        {/* Hero inner layout */}
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+            {/* Left — text content */}
+            <div className="flex-1 flex flex-col items-center text-center pb-8 mt-8 md:mt-0">
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-16 pt-8 border-t border-white/10 w-full max-w-3xl">
-            <div className="flex items-center gap-2 text-white">
-              <CheckCircle2 className="text-gold" size={20} />
-              <span className="text-sm font-medium">95%+ Accuracy</span>
+              <div className="flex flex-col items-center w-full mb-8">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold bg-gold/10">
+                  <ShieldCheck className="text-gold" size={19} />
+                  <span className="text-gold font-medium text-sm">
+                    SEBI Registered Research Analyst
+                  </span>
+                </div>
+                <p className="text-gold text-sm tracking-wider mt-2">
+                  SEBI Reg. No: INH000025221
+                </p>
+              </div>
+              <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-white font-bold leading-tight mb-6 max-w-4xl">
+                Craft Your <span className="text-gradient">Financial</span> Future
+              </h1>
+              <p className="font-sans text-lg text-gray-300 max-w-[600px] mb-8 leading-relaxed">
+                Fortune Kraft Consultancy delivers expert equity research,
+                high-accuracy trade calls, and real-time alerts to help you navigate
+                Indian markets with confidence.
+              </p>
+
+              <HeroButtons />
+
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 mt-16 pt-8 border-t border-white/10 w-full max-w-3xl">
+                <div className="flex items-center gap-2 text-white">
+                  <CheckCircle2 className="text-gold" size={20} />
+                  <span className="text-sm font-medium">95%+ Accuracy</span>
+                </div>
+                <div className="flex items-center gap-2 text-white">
+                  <CheckCircle2 className="text-gold" size={20} />
+                  <span className="text-sm font-medium">SEBI Regulated</span>
+                </div>
+                <div className="flex items-center gap-2 text-white">
+                  <CheckCircle2 className="text-gold" size={20} />
+                  <span className="text-sm font-medium">Real-time Support</span>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center gap-2 text-white">
-              <CheckCircle2 className="text-gold" size={20} />
-              <span className="text-sm font-medium">SEBI Regulated</span>
-            </div>
-            <div className="flex items-center gap-2 text-white">
-              <CheckCircle2 className="text-gold" size={20} />
-              <span className="text-sm font-medium">Real-time Support</span>
+
+            {/* Right — chart visual (desktop only) */}
+            <div className="hidden lg:flex flex-1 items-center justify-center">
+              <HeroChart />
             </div>
           </div>
         </div>
-        <ScrollIndicator />
+
+        <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10">
+          <ScrollIndicator />
+        </div>
       </section>
 
       {/* SECTION 3: WHY CHOOSE US */}
