@@ -168,7 +168,7 @@ export function CtaBanner() {
               Ready to Trade Smarter?
             </h2>
             <p className="text-lg text-gray-300 mb-10">
-              Join 10,000+ investors who trust Fortune Kraft for their financial growth.
+              Join 10,000+ investors who trust FortuneKraft for their financial growth.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link

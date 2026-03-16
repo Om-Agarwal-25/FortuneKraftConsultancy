@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { MotionSection } from '@/components/MotionSection'
 
 export const metadata: Metadata = {
-  title: 'Disclosure | Fortune Kraft Consultancy',
-  description: 'Disclosure document for Fortune Kraft Consultancy as per SEBI Research Analyst Regulations 2014. Registration No. INH000025221.',
+  title: 'Disclosure | FortuneKraft Consultancy',
+  description: 'Disclosure document for FortuneKraft Consultancy as per SEBI Research Analyst Regulations 2014. Registration No. INH000025221.',
 }
 
 export default function DisclosurePage() {

@@ -3,8 +3,8 @@ import Link from 'next/link'
 import * as ClientComps from './ClientComps'
 
 export const metadata: Metadata = {
-  title: 'About Us | Fortune Kraft Consultancy',
-  description: "Learn about Fortune Kraft Consultancy — our story, mission, vision, and the team behind India's most trusted SEBI registered research analyst firm.",
+  title: 'About Us | FortuneKraft Consultancy',
+  description: "Learn about FortuneKraft Consultancy — our story, mission, vision, and the team behind India's most trusted SEBI registered research analyst firm.",
 }
 
 export default function AboutPage() {
@@ -27,7 +27,7 @@ export default function AboutPage() {
 
           <ClientComps.FadeIn delay={0.1}>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white font-bold mb-6">
-              About Fortune Kraft
+              About FortuneKraft
             </h1>
           </ClientComps.FadeIn>
 
@@ -84,10 +84,10 @@ export default function AboutPage() {
 
             <div className="flex flex-col gap-6 text-[#2A3B54] text-base leading-relaxed">
               <p>
-                Fortune Kraft Consultancy was founded in 2019 by a team of seasoned market veterans with a combined experience of over 20 years in Indian equity markets. What started as a small advisory practice in Mumbai has grown into one of India&apos;s most trusted SEBI-registered research analyst firms.
+                FortuneKraft Consultancy was founded in 2019 by a team of seasoned market veterans with a combined experience of over 20 years in Indian equity markets. What started as a small advisory practice in Mumbai has grown into one of India&apos;s most trusted SEBI-registered research analyst firms.
               </p>
               <p>
-                Our founders witnessed firsthand how retail investors struggled to navigate the complexities of the stock market without reliable, research-backed guidance. Fortune Kraft was built to bridge that gap — delivering institutional-quality research to everyday investors at an accessible price.
+                Our founders witnessed firsthand how retail investors struggled to navigate the complexities of the stock market without reliable, research-backed guidance. FortuneKraft was built to bridge that gap — delivering institutional-quality research to everyday investors at an accessible price.
               </p>
               <p>
                 Today, we serve over 10,000 active clients across India, with a proven track record of 95%+ call accuracy and a commitment to transparency, compliance, and client success that has never wavered.

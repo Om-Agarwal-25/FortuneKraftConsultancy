@@ -49,10 +49,10 @@ function ServicesContent(): JSX.Element {
       <section className="bg-gradient-to-br from-[#0A1628] to-[#1a3a5c] pt-32 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(240,165,0,0.4) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="flex items-center justify-center gap-2 text-gold/80 text-sm font-medium mb-4">
-            <Link href="/" className="hover:text-gold transition-colors">Home</Link>
-            <ChevronRight size={14} />
-            <span className="text-white">Our Services</span>
+          <div className="text-gold text-sm font-semibold tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <span className="text-white/50">&gt;</span>
+            <span>Our Services</span>
           </div>
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white font-bold mb-6">Our Services</h1>
           <p className="text-gray-300 max-w-2xl mx-auto text-lg">Explore our tailored advisory plans, designed to match your trading style and risk appetite.</p>

@@ -4,8 +4,8 @@ import { Eye, Target, CheckCircle2, XCircle } from 'lucide-react'
 import { MotionSection } from '@/components/MotionSection'
 
 export const metadata: Metadata = {
-  title: 'Investor Charter | Fortune Kraft Consultancy',
-  description: 'Investor Charter for Fortune Kraft Consultancy — SEBI registered Research Analyst. Know your rights, responsibilities and grievance redressal mechanism.',
+  title: 'Investor Charter | FortuneKraft Consultancy',
+  description: 'Investor Charter for FortuneKraft Consultancy — SEBI registered Research Analyst. Know your rights, responsibilities and grievance redressal mechanism.',
 }
 
 export default function InvestorCharterPage() {

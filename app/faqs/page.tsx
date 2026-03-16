@@ -5,8 +5,8 @@ import { faqs } from '@/lib/faqsData'
 import { MessageCircle } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'FAQs | Fortune Kraft Consultancy',
-  description: 'Frequently asked questions about Fortune Kraft Consultancy services, payments, SEBI compliance, and how our equity research works.',
+  title: 'FAQs | FortuneKraft Consultancy',
+  description: 'Frequently asked questions about FortuneKraft Consultancy services, payments, SEBI compliance, and how our equity research works.',
 }
 
 export default function FaqsPage() {
@@ -30,7 +30,7 @@ export default function FaqsPage() {
           </h1>
 
           <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Everything you need to know about Fortune Kraft Consultancy
+            Everything you need to know about FortuneKraft Consultancy
           </p>
         </div>
       </section>

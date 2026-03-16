@@ -46,7 +46,7 @@ export default function Footer(): JSX.Element {
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-3 inline-block">
               <div className="relative h-[48px] w-[110px] bg-white px-3 py-2 rounded-xl">
-                <Image src="/logo.png" alt="Fortune Kraft" fill sizes="110px" className="object-contain" />
+                <Image src="/logo.png" alt="FortuneKraft" fill sizes="110px" className="object-contain" />
               </div>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed max-w-[280px]">
@@ -110,7 +110,14 @@ export default function Footer(): JSX.Element {
             </div>
             <div className="flex gap-3 text-gray-400 text-sm items-center">
               <Mail size={18} className="text-gold flex-shrink-0" />
-              <span>fortunekraftconcultancy@gmail.com</span>
+              <a 
+                href="https://mail.google.com/mail/?view=cm&to=fortunekraftconcultancy@gmail.com" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                fortunekraftconcultancy@gmail.com
+              </a>
             </div>
 
             <div className="mt-4 p-4 rounded-xl bg-navy border border-white/10 flex items-start gap-3">
@@ -133,7 +140,7 @@ export default function Footer(): JSX.Element {
         {/* Bottom Bar */}
         <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} Fortune Kraft Consultancy. All rights reserved.
+            &copy; {new Date().getFullYear()} FortuneKraft Consultancy. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-gray-500">
             <Link href="/legal" className="hover:text-gold transition-colors">Privacy Policy</Link>

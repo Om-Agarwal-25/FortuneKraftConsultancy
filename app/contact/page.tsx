@@ -4,8 +4,8 @@ import ContactForm from '@/components/ContactForm'
 import { Phone, MessageCircle, Mail, MapPin, Shield, Twitter, Linkedin, Youtube, Instagram } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Fortune Kraft Consultancy',
-  description: 'Get in touch with Fortune Kraft Consultancy. Send us a query, lodge a complaint, or enquire about our equity research services.',
+  title: 'Contact Us | FortuneKraft Consultancy',
+  description: 'Get in touch with FortuneKraft Consultancy. Send us a query, lodge a complaint, or enquire about our equity research services.',
 }
 
 export default function ContactPage() {
@@ -77,7 +77,12 @@ export default function ContactPage() {
                   </a>
 
                   {/* Email */}
-                  <a href="mailto:fortunekraftconcultancy@gmail.com" className="flex items-start gap-5 group cursor-pointer transition-all hover:-translate-y-1">
+                  <a 
+                    href="https://mail.google.com/mail/?view=cm&to=fortunekraftconcultancy@gmail.com" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-5 group cursor-pointer transition-all hover:-translate-y-1"
+                  >
                     <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center flex-shrink-0 border border-gold/20 group-hover:bg-gold/20 transition-colors">
                       <Mail className="w-5 h-5 text-gold" />
                     </div>

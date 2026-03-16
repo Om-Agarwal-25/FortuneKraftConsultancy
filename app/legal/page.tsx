@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import { Construction } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Legal | Fortune Kraft Consultancy',
-  description: 'Legal policies, terms of service, and SEBI compliance information for Fortune Kraft Consultancy.',
+  title: 'Legal | FortuneKraft Consultancy',
+  description: 'Legal policies, terms of service, and SEBI compliance information for FortuneKraft Consultancy.',
 }
 
 export default function LegalPage(): JSX.Element {

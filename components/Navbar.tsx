@@ -58,6 +58,17 @@ export default function Navbar(): JSX.Element {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const pathname: string = usePathname();
+
+  function handleGetStarted(): void {
+    if (pathname === '/') {
+      const section = document.getElementById('how-it-works')
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    } else {
+      window.location.href = '/services'
+    }
+  }
   const { scrollY }: { scrollY: MotionValue<number> } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest: number) => {
@@ -101,7 +112,7 @@ export default function Navbar(): JSX.Element {
           <div className="relative w-10 h-10 md:w-14 md:h-14">
             <Image
               src="/logo.png"
-              alt="Fortune Kraft Consultancy"
+              alt="FortuneKraft Consultancy"
               fill
               sizes="(max-width: 768px) 40px, 56px"
               className="object-contain bg-white rounded-xl"
@@ -153,16 +164,15 @@ export default function Navbar(): JSX.Element {
 
         {/* CTA Button */}
         <div className="hidden lg:block">
-          <Link href="/services">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gold text-navy font-semibold px-6 py-2.5 rounded-full relative overflow-hidden group"
-            >
-              <span className="relative z-10">Get Started</span>
-              <motion.div className="absolute inset-0 bg-white/30 transform -skew-x-[20deg] -translate-x-full group-hover:animate-[shimmer_1s_infinite]" />
-            </motion.button>
-          </Link>
+          <motion.button
+            onClick={handleGetStarted}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-gold text-navy font-semibold px-6 py-2.5 rounded-full relative overflow-hidden group"
+          >
+            <span className="relative z-10">Get Started</span>
+            <motion.div className="absolute inset-0 bg-white/30 transform -skew-x-[20deg] -translate-x-full group-hover:animate-[shimmer_1s_infinite]" />
+          </motion.button>
         </div>
 
         {/* Mobile Hamburger */}
@@ -199,13 +209,17 @@ export default function Navbar(): JSX.Element {
                 </motion.div>
               ))}
             </div>
-            <motion.button
-              variants={MOBILE_LINK_VARIANTS}
-              onClick={closeMenu}
-              className="mt-12 bg-gold text-navy font-semibold py-4 rounded-xl text-lg relative overflow-hidden group"
-            >
-              Get Started
-            </motion.button>
+            <motion.div variants={MOBILE_LINK_VARIANTS} className="mt-12">
+              <button
+                onClick={() => {
+                  closeMenu()
+                  handleGetStarted()
+                }}
+                className="block text-center w-full bg-gold text-navy font-semibold py-4 rounded-xl text-lg relative overflow-hidden group hover:bg-gold-light transition-colors duration-200"
+              >
+                Get Started
+              </button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

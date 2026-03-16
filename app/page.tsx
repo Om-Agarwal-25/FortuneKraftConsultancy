@@ -76,7 +76,7 @@ const STATS: Stat[] = [
 const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "Fortune Kraft has completely changed how I trade. Their risk management is top-notch, and the accuracy is exactly as advertised.",
+      "FortuneKraft has completely changed how I trade. Their risk management is top-notch, and the accuracy is exactly as advertised.",
     name: "Rahul S.",
     designation: "Full-time Trader",
     location: "Mumbai",
@@ -142,7 +142,7 @@ export default function Home(): JSX.Element {
                 Craft Your <span className="text-gradient">Financial</span> Future
               </h1>
               <p className="font-sans text-lg text-gray-300 max-w-[600px] mb-8 leading-relaxed">
-                Fortune Kraft Consultancy delivers expert equity research,
+                FortuneKraft Consultancy delivers expert equity research,
                 high-accuracy trade calls, and real-time alerts to help you navigate
                 Indian markets with confidence.
               </p>
@@ -182,7 +182,7 @@ export default function Home(): JSX.Element {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="font-display text-4xl text-navy font-bold mb-4">
-              Why Choose Fortune Kraft?
+              Why Choose FortuneKraft?
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               We blend advanced market analytics with disciplined risk
@@ -298,7 +298,7 @@ export default function Home(): JSX.Element {
       </section>
 
       {/* SECTION 5: HOW IT WORKS */}
-      <section className="py-24 bg-white overflow-hidden">
+      <section id="how-it-works" className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-6">
           <h2 className="font-display text-4xl text-navy font-bold text-center mb-16">
             How It Works

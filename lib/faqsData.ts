@@ -4,8 +4,8 @@ export const faqs: FaqItem[] = [
   {
     id: 'faq-1',
     category: 'About Services',
-    question: 'What is Fortune Kraft Consultancy?',
-    answer: 'Fortune Kraft Consultancy is a SEBI-registered research analyst firm providing institutional-quality equity research, stock recommendations, and technical analysis to retail and HNI investors in India. We aim to help our clients make informed trading decisions.',
+    question: 'What is FortuneKraft Consultancy?',
+    answer: 'FortuneKraft Consultancy is a SEBI-registered research analyst firm providing institutional-quality equity research, stock recommendations, and technical analysis to retail and HNI investors in India. We aim to help our clients make informed trading decisions.',
   },
   {
     id: 'faq-2',

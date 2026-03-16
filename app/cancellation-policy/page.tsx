@@ -4,8 +4,8 @@ import { MotionSection } from '@/components/MotionSection'
 import { CheckCircle2 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Cancellation & Refund Policy | Fortune Kraft Consultancy',
-  description: 'Cancellation and refund policy for Fortune Kraft Consultancy research analyst services.',
+  title: 'Cancellation & Refund Policy | FortuneKraft Consultancy',
+  description: 'Cancellation and refund policy for FortuneKraft Consultancy research analyst services.',
 }
 
 export default function CancellationPolicyPage() {
@@ -47,7 +47,7 @@ export default function CancellationPolicyPage() {
         <MotionSection className="bg-[#0A1628] rounded-2xl p-8 md:p-12 mb-16 shadow-xl relative overflow-hidden">
            <div className="relative z-10">
             <p className="text-white font-medium text-lg md:text-xl leading-relaxed mb-6">
-              At Fortune Kraft Consultancy, we strive to ensure complete satisfaction with our research and advisory services. Please read our cancellation and refund policy carefully before subscribing to any of our plans.
+              At FortuneKraft Consultancy, we strive to ensure complete satisfaction with our research and advisory services. Please read our cancellation and refund policy carefully before subscribing to any of our plans.
             </p>
             <p className="text-gold/80 text-sm font-semibold tracking-wide">Last updated: January 2025</p>
           </div>
@@ -141,13 +141,13 @@ export default function CancellationPolicyPage() {
           
           <div className="bg-[#0A1628] rounded-xl p-8 border-l-4 border-gold shadow-lg flex flex-col gap-4">
             <p className="text-gray-300 text-base leading-relaxed">
-              <span className="text-gold font-bold mr-2">•</span> Fortune Kraft Consultancy reserves the right to modify this policy at any time. Clients will be notified of significant changes via email or WhatsApp.
+              <span className="text-gold font-bold mr-2">•</span> FortuneKraft Consultancy reserves the right to modify this policy at any time. Clients will be notified of significant changes via email or WhatsApp.
             </p>
             <p className="text-gray-300 text-base leading-relaxed">
-              <span className="text-gold font-bold mr-2">•</span> In case of any disputes regarding refunds, the decision of Fortune Kraft Consultancy shall be final and binding.
+              <span className="text-gold font-bold mr-2">•</span> In case of any disputes regarding refunds, the decision of FortuneKraft Consultancy shall be final and binding.
             </p>
             <p className="text-gray-300 text-base leading-relaxed font-medium">
-              <span className="text-gold font-bold mr-2">•</span> For any queries related to cancellations or refunds, please contact us at <a href="mailto:fortunekraftconcultancy@gmail.com" className="text-white hover:text-gold transition-colors">fortunekraftconcultancy@gmail.com</a> or call <a href="tel:+917030151276" className="text-white hover:text-gold transition-colors">+91 70301 51276</a>.
+              <span className="text-gold font-bold mr-2">•</span> For any queries related to cancellations or refunds, please contact us at <a href="https://mail.google.com/mail/?view=cm&to=fortunekraftconcultancy@gmail.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gold transition-colors">fortunekraftconcultancy@gmail.com</a> or call <a href="tel:+917030151276" className="text-white hover:text-gold transition-colors">+91 70301 51276</a>.
             </p>
           </div>
         </MotionSection>

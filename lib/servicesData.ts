@@ -78,7 +78,7 @@ export const services: Service[] = [
     duration: '2 Days',
     price: 'FREE',
     tag: 'Free Trial',
-    description: 'Experience Fortune Kraft before you invest. Get 2 days of live equity calls with no payment required.',
+    description: 'Experience FortuneKraft before you invest. Get 2 days of live equity calls with no payment required.',
     features: ['1–2 live calls', 'WhatsApp alerts', 'Entry, target & stop-loss', 'No payment required'],
   },
 ]
