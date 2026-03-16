@@ -30,7 +30,7 @@ interface SocialLink {
 const SOCIAL_LINKS: SocialLink[] = [
   { icon: Facebook, href: '#', label: 'Facebook' },
   { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
+  { icon: Instagram, href: 'https://www.instagram.com/fortunekraftconsultancy', label: 'Instagram' },
   { icon: Linkedin, href: '#', label: 'LinkedIn' },
 ]
 
@@ -110,8 +110,8 @@ export default function Footer(): JSX.Element {
             </div>
             <div className="flex gap-3 text-gray-400 text-sm items-center">
               <Mail size={18} className="text-gold flex-shrink-0" />
-              <a 
-                href="https://mail.google.com/mail/?view=cm&to=fortunekraftconcultancy@gmail.com" 
+              <a
+                href="https://mail.google.com/mail/?view=cm&to=fortunekraftconcultancy@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors"
@@ -132,8 +132,8 @@ export default function Footer(): JSX.Element {
 
         {/* Regulatory Disclosure Banner */}
         <div className="text-center text-xs text-gray-500 py-3 mb-2 border-t border-white/5">
-          Market Risks (“Ritesh Agarwal Research Analyst”) Does Not Provide Only Any Assured Return/Garunteed Return/Profit services, 
-          any Profit Sharing Services and Services Which are not mentioned on Company Website Please Trade Only a Company SMS With Proper Stop Loss. 
+          Market Risks (“Ritesh Agarwal Research Analyst”) Does Not Provide Only Any Assured Return/Garunteed Return/Profit services,
+          any Profit Sharing Services and Services Which are not mentioned on Company Website Please Trade Only a Company SMS With Proper Stop Loss.
           We never ask for Demat Detail From Anyone Please ask If anyone talks about these services +91 70301 51276.
         </div>
 

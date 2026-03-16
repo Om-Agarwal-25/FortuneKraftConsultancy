@@ -50,7 +50,7 @@ export default function ContactPage() {
 
               <div className="relative z-10 flex-1">
                 <h2 className="font-display text-3xl text-white font-bold mb-3">Contact Information</h2>
-                <p className="text-white/60 mb-8">Available Monday–Saturday, 9AM–6PM IST</p>
+                <p className="text-white/60 mb-8">Available Monday - Saturday, 9AM - 6PM IST</p>
                 <div className="w-12 h-px bg-gold/50 mb-10" />
 
                 <div className="flex flex-col gap-8">
