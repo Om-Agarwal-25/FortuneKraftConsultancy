@@ -49,11 +49,19 @@ export default function ServiceModal({ service, mode, onClose }: ServiceModalPro
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [onClose])
 
+  // Prevent background scroll
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [])
+
   return (
     <AnimatePresence>
       {/* Backdrop */}
       <motion.div
-        className="fixed inset-0 z-[9998]"
+        className="fixed inset-0 z-[9998] overflow-hidden"
         style={{ background: 'rgba(10,22,40,0.85)', backdropFilter: 'blur(4px)' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -70,7 +78,7 @@ export default function ServiceModal({ service, mode, onClose }: ServiceModalPro
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       >
         <div
-          className="bg-white rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto"
+          className="bg-white rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto overscroll-contain"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
