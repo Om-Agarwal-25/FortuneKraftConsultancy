@@ -82,9 +82,9 @@ export default function RegistrationDisclosurePage() {
                 <span className="text-[#F0A500] font-semibold text-[15px] sm:w-[220px] flex-shrink-0">
                   Email ID:
                 </span>
-                <a href="https://mail.google.com/mail/?view=cm&to=fortunekraftconsultancy@gmail.com" target="_blank" rel="noopener noreferrer" className="text-white text-[15px] leading-relaxed hover:text-[#F0A500] transition-colors flex items-center gap-2 break-all">
+                <a href="https://mail.google.com/mail/?view=cm&to=support@fortunekraftconsultancy.com" target="_blank" rel="noopener noreferrer" className="text-white text-[15px] leading-relaxed hover:text-[#F0A500] transition-colors flex items-center gap-2 break-all">
                   <Mail className="w-4 h-4" />
-                  fortunekraftconsultancy@gmail.com
+                  support@fortunekraftconsultancy.com
                 </a>
               </div>
             </div>

@@ -53,8 +53,8 @@ export default function GrievanceRedressalPage() {
               <Mail className="w-8 h-8 text-[#F0A500]" />
             </div>
             <h3 className="font-display text-xl text-[#0A1628] font-bold mb-3">Email</h3>
-            <a href="https://mail.google.com/mail/?view=cm&to=fortunekraftconsultancy@gmail.com" target="_blank" rel="noopener noreferrer" className="text-[#23344E] hover:text-[#F0A500] transition-colors text-[15px] break-all">
-              fortunekraftconsultancy@gmail.com
+            <a href="https://mail.google.com/mail/?view=cm&to=support@fortunekraftconsultancy.com" target="_blank" rel="noopener noreferrer" className="text-[#23344E] hover:text-[#F0A500] transition-colors text-[15px] break-all">
+              support@fortunekraftconsultancy.com
             </a>
           </div>
 

@@ -2,9 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   Facebook,
-  Twitter,
   Instagram,
-  Linkedin,
   ShieldCheck,
   Mail,
   Phone,
@@ -41,17 +39,15 @@ interface SocialLink {
 
 const SOCIAL_LINKS: SocialLink[] = [
   {
-    icon: Facebook,
-    href: "https://www.facebook.com/people/Fortunekraft-Consultancy/61579505940704/?mibextid=wwXIfr&rdid=NjxVx4x0RjtEIq5o&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1WJ8KdSUE3%2F%3Fmibextid%3DwwXIfr",
-    label: "Facebook",
-  },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/fortunekraftconsultancy',
     icon: Instagram,
-    href: "https://www.instagram.com/fortunekraftconsultancy",
-    label: "Instagram",
   },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/people/Fortunekraft-Consultancy/61579505940704/?mibextid=wwXIfr&rdid=NjxVx4x0RjtEIq5o&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1WJ8KdSUE3%2F%3Fmibextid%3DwwXIfr',
+    icon: Facebook,
+  },
 ];
 
 export default function Footer(): JSX.Element {
@@ -87,7 +83,9 @@ export default function Footer(): JSX.Element {
                     key={social.label}
                     href={social.href}
                     aria-label={social.label}
-                    className="w-10 h-10 rounded-full bg-navy flex items-center justify-center border border-white/10 hover:border-gold hover:text-gold transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full border border-gold flex items-center justify-center text-gold hover:bg-gold hover:text-[#060e1a] transition-colors"
                   >
                     <Icon size={18} />
                   </a>
@@ -150,12 +148,12 @@ export default function Footer(): JSX.Element {
             <div className="flex gap-3 text-gray-400 text-sm items-center">
               <Mail size={18} className="text-gold flex-shrink-0" />
               <a
-                href="https://mail.google.com/mail/?view=cm&to=fortunekraftconsultancy@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&to=support@fortunekraftconsultancy.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-gold transition-colors"
               >
-                fortunekraftconsultancy@gmail.com
+                support@fortunekraftconsultancy.com
               </a>
             </div>
 

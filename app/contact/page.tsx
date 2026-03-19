@@ -7,10 +7,8 @@ import {
   Mail,
   MapPin,
   Shield,
-  Twitter,
-  Linkedin,
-  Youtube,
   Instagram,
+  Facebook,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -108,7 +106,7 @@ export default function ContactPage() {
 
                   {/* Email */}
                   <a
-                    href="https://mail.google.com/mail/?view=cm&to=fortunekraftconsultancy@gmail.com"
+                    href="https://mail.google.com/mail/?view=cm&to=support@fortunekraftconsultancy.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-start gap-5 group cursor-pointer transition-all hover:-translate-y-1"
@@ -121,7 +119,7 @@ export default function ContactPage() {
                         Email
                       </p>
                       <p className="text-white font-bold text-lg group-hover:text-gold transition-colors">
-                        fortunekraftconsultancy@gmail.com
+                        support@fortunekraftconsultancy.com
                       </p>
                     </div>
                   </a>
@@ -162,15 +160,31 @@ export default function ContactPage() {
               <div className="relative z-10 mt-12 w-full">
                 <div className="w-full h-px bg-white/10 mb-8" />
                 <div className="flex gap-4">
-                  {[Twitter, Linkedin, Youtube, Instagram].map((Icon, idx) => (
-                    <a
-                      key={idx}
-                      href="#"
-                      className="w-10 h-10 rounded-full border border-gold flex items-center justify-center text-gold hover:bg-gold hover:text-navy transition-colors"
-                    >
-                      <Icon className="w-4 h-4" />
-                    </a>
-                  ))}
+                  {[
+                    {
+                      label: 'Instagram',
+                      href: 'https://www.instagram.com/fortunekraftconsultancy',
+                      icon: Instagram,
+                    },
+                    {
+                      label: 'Facebook',
+                      href: 'https://www.facebook.com/people/Fortunekraft-Consultancy/61579505940704/?mibextid=wwXIfr&rdid=NjxVx4x0RjtEIq5o&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1WJ8KdSUE3%2F%3Fmibextid%3DwwXIfr',
+                      icon: Facebook,
+                    },
+                  ].map((social) => {
+                    const Icon = social.icon;
+                    return (
+                      <a
+                        key={social.label}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 rounded-full border border-gold flex items-center justify-center text-gold hover:bg-gold hover:text-[#0A1628] transition-colors"
+                      >
+                        <Icon className="w-5 h-5" />
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             </div>

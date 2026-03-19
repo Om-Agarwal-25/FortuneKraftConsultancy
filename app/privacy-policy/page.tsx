@@ -103,7 +103,7 @@ export default function PrivacyPolicyPage() {
           <h3 className="font-display text-2xl text-[#0A1628] font-bold mb-4">6. Opt-Out Option</h3>
           <div className="w-20 h-1 bg-[#F0A500] mb-6" />
           <p className="text-[#23344E] text-[15px] leading-relaxed">
-            If you wish to stop receiving promotional or marketing communication from us, you may opt out by sending an email to <a href="https://mail.google.com/mail/?view=cm&to=fortunekraftconsultancy@gmail.com" target="_blank" rel="noopener noreferrer" className="text-[#F0A500] hover:underline font-medium">fortunekraftconsultancy@gmail.com</a>. Your preferences will be updated within a reasonable timeframe.
+            If you wish to stop receiving promotional or marketing communication from us, you may opt out by sending an email to <a href="https://mail.google.com/mail/?view=cm&to=support@fortunekraftconsultancy.com" target="_blank" rel="noopener noreferrer" className="text-[#F0A500] hover:underline font-medium">support@fortunekraftconsultancy.com</a>. Your preferences will be updated within a reasonable timeframe.
           </p>
         </div>
 
@@ -132,7 +132,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <p className="text-white/90 text-[15px]">
               <span className="font-semibold text-white block mb-1">Email:</span>
-              <a href="https://mail.google.com/mail/?view=cm&to=fortunekraftconsultancy@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#F0A500] transition-colors">fortunekraftconsultancy@gmail.com</a>
+              <a href="https://mail.google.com/mail/?view=cm&to=support@fortunekraftconsultancy.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#F0A500] transition-colors">support@fortunekraftconsultancy.com</a>
             </p>
           </div>
         </div>
