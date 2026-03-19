@@ -110,7 +110,7 @@ export default function AboutPage() {
               <h3 className="font-display text-3xl text-white font-bold mb-6">Our Mission</h3>
               <div className="w-10 h-px bg-gold mb-8" />
               <p className="text-gray-300 text-lg leading-relaxed mb-12 flex-grow">
-                To empower every Indian investor with institutional-quality equity research, delivered with transparency, precision, and unwavering commitment to compliance.
+                To cut through market noise and deliver clear, high-conviction research that enables investors to act with confidence and control.
               </p>
               <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-sm font-semibold tracking-wide">
                 Client First
@@ -127,7 +127,7 @@ export default function AboutPage() {
               <h3 className="font-display text-3xl text-[#0A1628] font-bold mb-6">Our Vision</h3>
               <div className="w-10 h-px bg-[#0A1628] mb-8" />
               <p className="text-[#0A1628]/80 text-lg leading-relaxed mb-12 flex-grow font-medium">
-                To become India&apos;s most respected research analyst firm — setting the benchmark for accuracy, ethics, and investor education in the Indian capital markets.
+                To redefine how investors engage with financial markets through clarity, discipline, and research-led thinking.
               </p>
               <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-[#0A1628]/10 border border-[#0A1628]/20 text-[#0A1628] text-sm font-bold tracking-wide">
                 Market Leaders
