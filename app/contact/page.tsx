@@ -1,12 +1,23 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import ContactForm from '@/components/ContactForm'
-import { Phone, MessageCircle, Mail, MapPin, Shield, Twitter, Linkedin, Youtube, Instagram } from 'lucide-react'
+import type { Metadata } from "next";
+import Link from "next/link";
+import ContactForm from "@/components/ContactForm";
+import {
+  Phone,
+  MessageCircle,
+  Mail,
+  MapPin,
+  Shield,
+  Twitter,
+  Linkedin,
+  Youtube,
+  Instagram,
+} from "lucide-react";
 
 export const metadata: Metadata = {
-  title: 'Contact Us | FortuneKraft Consultancy',
-  description: 'Get in touch with FortuneKraft Consultancy. Send us a query, lodge a complaint, or enquire about our equity research services.',
-}
+  title: "Contact Us | FortuneKraft Consultancy",
+  description:
+    "Get in touch with FortuneKraft Consultancy. Send us a query, lodge a complaint, or enquire about our equity research services.",
+};
 
 export default function ContactPage() {
   return (
@@ -19,7 +30,9 @@ export default function ContactPage() {
 
         <div className="container mx-auto px-6 relative z-10 text-center">
           <div className="text-gold text-sm font-semibold tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <Link href="/" className="hover:text-white transition-colors">
+              Home
+            </Link>
             <span className="text-white/50">&gt;</span>
             <span>Contact</span>
           </div>
@@ -29,7 +42,8 @@ export default function ContactPage() {
           </h1>
 
           <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            We&apos;re here to help. Reach out and our team will respond within 24 hours.
+            We&apos;re here to help. Reach out and our team will respond within
+            24 hours.
           </p>
         </div>
       </section>
@@ -37,7 +51,6 @@ export default function ContactPage() {
       {/* SECTION 2 - CONTACT DETAILS + FORM */}
       <section className="py-20 lg:py-28 container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-
           {/* Left Column (40%) - Contact Details Card */}
           <div className="lg:col-span-5 h-full">
             <div className="bg-[#0A1628] rounded-2xl p-10 lg:p-12 relative overflow-hidden h-full flex flex-col shadow-xl">
@@ -49,8 +62,12 @@ export default function ContactPage() {
               />
 
               <div className="relative z-10 flex-1">
-                <h2 className="font-display text-3xl text-white font-bold mb-3">Contact Information</h2>
-                <p className="text-white/60 mb-8">Available Monday - Saturday, 9AM - 6PM IST</p>
+                <h2 className="font-display text-3xl text-white font-bold mb-3">
+                  Contact Information
+                </h2>
+                <p className="text-white/60 mb-8">
+                  Available Monday - Saturday, 9AM - 6PM IST
+                </p>
                 <div className="w-12 h-px bg-gold/50 mb-10" />
 
                 <div className="flex flex-col gap-8">
@@ -60,25 +77,38 @@ export default function ContactPage() {
                       <Phone className="w-5 h-5 text-gold" />
                     </div>
                     <div>
-                      <p className="text-white/50 text-xs font-bold tracking-widest uppercase mb-1">Phone</p>
-                      <p className="text-white font-bold text-lg">+91 70301 51276</p>
+                      <p className="text-white/50 text-xs font-bold tracking-widest uppercase mb-1">
+                        Phone
+                      </p>
+                      <p className="text-white font-bold text-lg">
+                        +91 70301 51276
+                      </p>
                     </div>
                   </div>
 
                   {/* WhatsApp */}
-                  <a href="https://wa.me/917030151276" target="_blank" rel="noopener noreferrer" className="flex items-start gap-5 group cursor-pointer transition-all hover:-translate-y-1">
+                  <a
+                    href="https://wa.me/917030151276"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-5 group cursor-pointer transition-all hover:-translate-y-1"
+                  >
                     <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center flex-shrink-0 border border-gold/20 group-hover:bg-gold/20 transition-colors">
                       <MessageCircle className="w-5 h-5 text-gold" />
                     </div>
                     <div>
-                      <p className="text-white/50 text-xs font-bold tracking-widest uppercase mb-1">WhatsApp</p>
-                      <p className="text-white font-bold text-lg group-hover:text-gold transition-colors">+91 70301 51276</p>
+                      <p className="text-white/50 text-xs font-bold tracking-widest uppercase mb-1">
+                        WhatsApp
+                      </p>
+                      <p className="text-white font-bold text-lg group-hover:text-gold transition-colors">
+                        +91 70301 51276
+                      </p>
                     </div>
                   </a>
 
                   {/* Email */}
-                  <a 
-                    href="https://mail.google.com/mail/?view=cm&to=fortunekraftconcultancy@gmail.com" 
+                  <a
+                    href="https://mail.google.com/mail/?view=cm&to=fortunekraftconcultancy@gmail.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-start gap-5 group cursor-pointer transition-all hover:-translate-y-1"
@@ -87,8 +117,12 @@ export default function ContactPage() {
                       <Mail className="w-5 h-5 text-gold" />
                     </div>
                     <div>
-                      <p className="text-white/50 text-xs font-bold tracking-widest uppercase mb-1">Email</p>
-                      <p className="text-white font-bold text-lg group-hover:text-gold transition-colors">fortunekraftconcultancy@gmail.com</p>
+                      <p className="text-white/50 text-xs font-bold tracking-widest uppercase mb-1">
+                        Email
+                      </p>
+                      <p className="text-white font-bold text-lg group-hover:text-gold transition-colors">
+                        fortunekraftconcultancy@gmail.com
+                      </p>
                     </div>
                   </a>
 
@@ -98,8 +132,13 @@ export default function ContactPage() {
                       <MapPin className="w-5 h-5 text-gold" />
                     </div>
                     <div>
-                      <p className="text-white/50 text-xs font-bold tracking-widest uppercase mb-1">Address</p>
-                      <p className="text-white font-bold text-base leading-relaxed max-w-[200px]">B-1106, Urban Space Phase 1, Mohammadwadi Road, Pune-411060</p>
+                      <p className="text-white/50 text-xs font-bold tracking-widest uppercase mb-1">
+                        Address
+                      </p>
+                      <p className="text-white font-bold text-base leading-relaxed max-w-[200px]">
+                        B-1106, Urban Space Phase 1, Mohammadwadi Road,
+                        Pune-411060
+                      </p>
                     </div>
                   </div>
 
@@ -109,8 +148,12 @@ export default function ContactPage() {
                       <Shield className="w-5 h-5 text-gold" />
                     </div>
                     <div>
-                      <p className="text-white/50 text-xs font-bold tracking-widest uppercase mb-1">SEBI REG. NO.</p>
-                      <p className="text-white font-bold text-lg">INH000025221</p>
+                      <p className="text-white/50 text-xs font-bold tracking-widest uppercase mb-1">
+                        SEBI REG. NO.
+                      </p>
+                      <p className="text-white font-bold text-lg">
+                        INH000025221
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -120,7 +163,11 @@ export default function ContactPage() {
                 <div className="w-full h-px bg-white/10 mb-8" />
                 <div className="flex gap-4">
                   {[Twitter, Linkedin, Youtube, Instagram].map((Icon, idx) => (
-                    <a key={idx} href="#" className="w-10 h-10 rounded-full border border-gold flex items-center justify-center text-gold hover:bg-gold hover:text-navy transition-colors">
+                    <a
+                      key={idx}
+                      href="#"
+                      className="w-10 h-10 rounded-full border border-gold flex items-center justify-center text-gold hover:bg-gold hover:text-navy transition-colors"
+                    >
                       <Icon className="w-4 h-4" />
                     </a>
                   ))}
@@ -133,7 +180,6 @@ export default function ContactPage() {
           <div className="lg:col-span-7 h-full">
             <ContactForm />
           </div>
-
         </div>
       </section>
 
@@ -141,7 +187,9 @@ export default function ContactPage() {
       <section className="bg-white py-20 lg:py-28">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="font-display text-4xl text-[#0A1628] font-bold mb-6">Find Us</h2>
+            <h2 className="font-display text-4xl text-[#0A1628] font-bold mb-6">
+              Find Us
+            </h2>
             <div className="w-16 h-1 bg-gold mx-auto rounded-full" />
           </div>
 
@@ -160,5 +208,5 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
