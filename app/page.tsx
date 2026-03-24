@@ -65,12 +65,12 @@ const WHY_CHOOSE_CARDS: WhyChooseCard[] = [
   },
 ];
 
-const STATS: Stat[] = [
-  { value: "7+", label: "Years of Experience" },
-  { value: "3", label: "Premium Services" },
-  { value: "50M+", label: "Wealth Crafted (INR)" },
-  { value: "21", label: "Day Grievance Resolution" },
-];
+// const STATS: Stat[] = [
+//   { value: "7+", label: "Years of Experience" },
+//   { value: "3", label: "Premium Services" },
+//   { value: "50M+", label: "Wealth Crafted (INR)" },
+//   { value: "21", label: "Day Grievance Resolution" },
+// ];
 
 const TESTIMONIALS: Testimonial[] = [
   {
