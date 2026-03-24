@@ -16,7 +16,7 @@ import {
   Zap,
   Moon,
 } from "lucide-react";
-import type { Testimonial, Stat, WhyChooseCard } from "@/types";
+import type { Testimonial, WhyChooseCard } from "@/types";
 // const StatsCounter = dynamic(() => import("@/components/StatsCounter"), { ssr: false });
 import {
   HeroButtons,
