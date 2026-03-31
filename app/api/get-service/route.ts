@@ -57,6 +57,16 @@ export async function GET(request: NextRequest): Promise<Response> {
 
     const data = JSON.parse(rawText) as TechnotronApiResponse
 
+    if (data.status) {
+      console.log('Program names from Technotron:', 
+        data.data.map((p) => ({ 
+          id: p.programId, 
+          name: p.programName,
+          published: p.publishToWebsite 
+        }))
+      )
+    }
+
     if (!data.status) {
       console.error('Technotron API error:', data.message)
       return NextResponse.json<ApiErrorResponse>(
