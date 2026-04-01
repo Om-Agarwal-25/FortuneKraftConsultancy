@@ -4,16 +4,26 @@ import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import type { Service } from "@/types";
 
+import type { CleanProgram, CleanPlan } from "@/app/api/get-all-services/route";
+
 interface ServiceCardProps {
   service: Service;
+  realPlan: CleanPlan | null;
+  realProgram: CleanProgram | null;
+  isLoadingPrices: boolean;
   onDescriptionClick: (service: Service) => void;
   onBuyClick: (service: Service) => void;
+  index: number;
 }
 
 export default function ServiceCard({
   service,
+  realPlan,
+  realProgram,
+  isLoadingPrices,
   onDescriptionClick,
   onBuyClick,
+  index,
 }: ServiceCardProps): JSX.Element {
   return (
     <motion.div
@@ -54,10 +64,37 @@ export default function ServiceCard({
 
       {/* Body section */}
       <div className="p-6 flex-grow flex flex-col">
+        {/* Price display */}
         <div className="mb-6">
-          <span className="text-4xl text-navy font-display font-bold">
-            {service.price}
-          </span>
+          {isLoadingPrices ? (
+            <div className="h-10 w-32 bg-gray-100 animate-pulse rounded-lg" />
+          ) : realPlan ? (
+            <div>
+              <div className="flex items-baseline gap-2">
+                <span className="font-display text-3xl text-navy font-bold">
+                  ₹{realPlan.finalPrice.toLocaleString('en-IN')}
+                </span>
+                {realPlan.discountPercent > 0 && (
+                  <span className="text-sm text-gray-400 line-through">
+                    ₹{(realPlan.gstApplied
+                      ? Math.round(realPlan.actualPrice * (1 + realPlan.gstPercentage / 100))
+                      : realPlan.actualPrice
+                    ).toLocaleString('en-IN')}
+                  </span>
+                )}
+              </div>
+              {realPlan.gstApplied && (
+                <p className="text-gray-400 text-xs mt-0.5">Incl. {realPlan.gstPercentage}% GST</p>
+              )}
+              {realPlan.discountPercent > 0 && (
+                <span className="text-xs bg-gold/20 text-gold-dark font-semibold px-2 py-0.5 rounded-full inline-block mt-2">
+                  {realPlan.discountPercent}% OFF
+                </span>
+              )}
+            </div>
+          ) : (
+            <span className="font-display text-3xl text-navy font-bold">{service.price}</span>
+          )}
         </div>
 
         <ul className="space-y-3 mb-8 flex-grow">

@@ -7,9 +7,13 @@ import type { Service, ModalMode } from '@/types'
 import type { TechnotronProgram, TechnotronPricingPlan } from '@/types/api'
 import { serviceDescriptions } from '@/lib/serviceDescriptions'
 
+import type { CleanProgram, CleanPlan } from '@/app/api/get-all-services/route'
+
 interface ServiceModalProps {
   service: Service
   mode: ModalMode
+  realPlan: CleanPlan | null
+  realProgram: CleanProgram | null
   onClose: () => void
 }
 
@@ -18,9 +22,9 @@ type BuyFetchState =
   | { status: 'success'; program: TechnotronProgram }
   | { status: 'error'; message?: string }
 
-export default function ServiceModal({ service, mode, onClose }: ServiceModalProps): JSX.Element {
+export default function ServiceModal({ service, mode, realPlan, realProgram, onClose }: ServiceModalProps): JSX.Element {
   const [buyState, setBuyState] = useState<BuyFetchState>({ status: 'loading' })
-  const [selectedPlan, setSelectedPlan] = useState<TechnotronPricingPlan | null>(null)
+  const [selectedPlan, setSelectedPlan] = useState<TechnotronPricingPlan | CleanPlan | null>(null)
 
   // Get the service family name for description lookup
   const familyName = service.title.split(' — ')[0] ?? ''
@@ -29,6 +33,14 @@ export default function ServiceModal({ service, mode, onClose }: ServiceModalPro
   // Only fetch API for buy mode
   useEffect(() => {
     if (mode !== 'buy') return
+
+    // If we already have the data from the page, use it directly
+    if (realPlan && realProgram) {
+      setBuyState({ status: 'success', program: realProgram as unknown as TechnotronProgram })
+      setSelectedPlan(realPlan)
+      return
+    }
+
     async function fetchData(): Promise<void> {
       try {
         const res = await fetch(`/api/get-service?serviceId=${encodeURIComponent(service.id)}`)
@@ -49,7 +61,7 @@ export default function ServiceModal({ service, mode, onClose }: ServiceModalPro
       }
     }
     void fetchData()
-  }, [mode, service.id])
+  }, [mode, service.id, realPlan, realProgram])
 
   // Close on Escape key
   useEffect(() => {
@@ -297,16 +309,21 @@ export default function ServiceModal({ service, mode, onClose }: ServiceModalPro
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {buyState.program.pricing.map((plan) => {
                           const isSelected = selectedPlan?.planId === plan.planId
-                          const finalPrice = plan.gstToBeApplied
-                            ? Math.round(plan.discountedPrice * (1 + plan.gstPercentage / 100))
-                            : plan.discountedPrice
-                          const originalPrice = plan.gstToBeApplied
+                          const isGstApplied = 'gstApplied' in plan ? plan.gstApplied : plan.gstToBeApplied
+                          const finalPrice = Number('finalPrice' in plan 
+                            ? plan.finalPrice 
+                            : (isGstApplied 
+                                ? Math.round(plan.discountedPrice * (1 + plan.gstPercentage / 100))
+                                : plan.discountedPrice))
+                          const originalPrice = isGstApplied
                             ? Math.round(plan.actualPrice * (1 + plan.gstPercentage / 100))
                             : plan.actualPrice
                           const hasDiscount = plan.actualPrice !== plan.discountedPrice
-                          const discountPct = hasDiscount
-                            ? Math.round(((plan.actualPrice - plan.discountedPrice) / plan.actualPrice) * 100)
-                            : 0
+                          const discountPct = Number('discountPercent' in plan
+                            ? plan.discountPercent
+                            : (hasDiscount
+                                ? Math.round(((plan.actualPrice - plan.discountedPrice) / plan.actualPrice) * 100)
+                                : 0))
 
                           return (
                             <button
@@ -337,7 +354,7 @@ export default function ServiceModal({ service, mode, onClose }: ServiceModalPro
                                 </p>
                               )}
                               <p className="text-gray-600 text-sm mt-1">{plan.displayDuration}</p>
-                              {plan.gstToBeApplied && (
+                              {Boolean('gstApplied' in plan ? plan.gstApplied : plan.gstToBeApplied) && (
                                 <p className="text-gray-400 text-xs mt-0.5">Incl. {plan.gstPercentage}% GST</p>
                               )}
                             </button>
@@ -353,17 +370,21 @@ export default function ServiceModal({ service, mode, onClose }: ServiceModalPro
                           <div>
                             <p className="text-white/60 text-sm">{selectedPlan.displayDuration} Plan</p>
                             <p className="text-gold font-bold text-2xl font-display">
-                              ₹{(selectedPlan.gstToBeApplied
-                                ? Math.round(selectedPlan.discountedPrice * (1 + selectedPlan.gstPercentage / 100))
-                                : selectedPlan.discountedPrice
-                              ).toLocaleString('en-IN')}
+                              ₹{Number('finalPrice' in selectedPlan 
+                                ? selectedPlan.finalPrice 
+                                : (
+                                  ('gstApplied' in selectedPlan ? selectedPlan.gstApplied : selectedPlan.gstToBeApplied)
+                                    ? Math.round(selectedPlan.discountedPrice * (1 + selectedPlan.gstPercentage / 100))
+                                    : selectedPlan.discountedPrice
+                                  )
+                                ).toLocaleString('en-IN')}
                             </p>
-                            {selectedPlan.gstToBeApplied && (
+                            {Boolean('gstApplied' in selectedPlan ? selectedPlan.gstApplied : selectedPlan.gstToBeApplied) && (
                               <p className="text-white/40 text-xs">Inclusive of {selectedPlan.gstPercentage}% GST</p>
                             )}
                           </div>
                           <a
-                            href={buyState.program.pricePageLink}
+                            href={buyState.status === 'success' ? buyState.program.pricePageLink : '#'}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-gold text-navy font-bold px-6 py-3 rounded-full hover:bg-gold-light transition-colors text-sm"

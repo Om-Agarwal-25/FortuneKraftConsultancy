@@ -1,16 +1,61 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
+import { useState, useEffect, Suspense, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSearchParams } from 'next/navigation'
-import type { Service, ServiceCategory, ModalMode } from '@/types'
+import type { Service, ModalMode } from '@/types'
 import { services } from '@/lib/servicesData'
 import ServiceCard from '@/components/ServiceCard'
 import ServiceModal from '@/components/ServiceModal'
 import Link from 'next/link'
 import { Zap, Moon, TrendingUp } from 'lucide-react'
+import type { CleanProgram, CleanPlan } from '@/app/api/get-all-services/route'
 
-const CATEGORIES: ServiceCategory[] = ['All', 'Intraday Alpha', 'BTST Alpha', 'Positional Alpha']
+export type ServiceCategory = 'All' | 'Intraday Alpha' | 'BTST Alpha' | 'Positional Alpha' | 'Trial Plans'
+
+const CATEGORIES: ServiceCategory[] = ['All', 'Intraday Alpha', 'BTST Alpha', 'Positional Alpha', 'Trial Plans']
+
+type FetchState =
+  | { status: 'loading' }
+  | { status: 'success'; programs: CleanProgram[] }
+  | { status: 'error' }
+
+const SERVICE_MAP: Record<string, { programName: string; duration: string; isDemo: boolean }> = {
+  'intraday-alpha-1m':  { programName: 'Intraday Alpha', duration: '30 days', isDemo: false },
+  'intraday-alpha-3m':  { programName: 'Intraday Alpha', duration: '3 months', isDemo: false },
+  'intraday-alpha-1y':  { programName: 'Intraday Alpha', duration: '12 months', isDemo: false },
+  'intraday-alpha-demo':{ programName: 'Intraday Alpha', duration: '7 days', isDemo: true },
+  'btst-alpha-1m':      { programName: 'BTST ALPHA', duration: '30 days', isDemo: false },
+  'btst-alpha-3m':      { programName: 'BTST ALPHA', duration: '3 months', isDemo: false },
+  'btst-alpha-1y':      { programName: 'BTST ALPHA', duration: '12 months', isDemo: false },
+  'btst-alpha-demo':    { programName: 'BTST ALPHA', duration: '7 days', isDemo: true },
+  'positional-alpha-1m':{ programName: 'Positional Alpha', duration: '30 days', isDemo: false },
+  'positional-alpha-3m':{ programName: 'Positional Alpha', duration: '3 months', isDemo: false },
+  'positional-alpha-1y':{ programName: 'Positional Alpha', duration: '12 months', isDemo: false },
+  'positional-alpha-demo':{ programName: 'Positional Alpha', duration: '7 days', isDemo: true },
+  'free-demo-service':  { programName: 'Free Demo Service', duration: '2 days', isDemo: true },
+}
+
+function getPlanForService(
+  serviceId: string,
+  programs: CleanProgram[]
+): { plan: CleanPlan | null; program: CleanProgram | null } {
+  const mapping = SERVICE_MAP[serviceId]
+  if (!mapping) return { plan: null, program: null }
+
+  const program = programs.find(
+    (p) => p.programName.toLowerCase() === mapping.programName.toLowerCase()
+  ) ?? null
+
+  if (!program) return { plan: null, program: null }
+
+  const plan = program.pricing.find(
+    (p) => p.displayDuration.toLowerCase() === mapping.duration.toLowerCase()
+      && (mapping.isDemo ? p.trialPack : !p.trialPack)
+  ) ?? program.pricing[0] ?? null
+
+  return { plan, program }
+}
 
 function ServicesContent(): JSX.Element {
   const searchParams = useSearchParams()
@@ -18,26 +63,48 @@ function ServicesContent(): JSX.Element {
 
   const [activeCategory, setActiveCategory] = useState<ServiceCategory>('All')
   const [selectedService, setSelectedService] = useState<Service | null>(null)
+  const [selectedRealPlan, setSelectedRealPlan] = useState<CleanPlan | null>(null)
+  const [selectedRealProgram, setSelectedRealProgram] = useState<CleanProgram | null>(null)
   const [modalMode, setModalMode] = useState<ModalMode>('description')
+  const [fetchState, setFetchState] = useState<FetchState>({ status: 'loading' })
 
   useEffect(() => {
-    if (initialTab && CATEGORIES.includes(initialTab)) {
-      setActiveCategory(initialTab)
+    const tab = searchParams.get('tab')
+    if (tab && CATEGORIES.includes(tab as ServiceCategory)) {
+      setActiveCategory(tab as ServiceCategory)
     }
-  }, [initialTab])
+  }, [searchParams])
 
-  const filteredServices: Service[] = activeCategory === 'All'
-    ? services
-    : services.filter((s) => s.title.startsWith(activeCategory))
+  useEffect(() => {
+    async function loadServices(): Promise<void> {
+      try {
+        const res = await fetch('/api/get-all-services')
+        if (!res.ok) throw new Error('Failed')
+        const data = await res.json() as { programs: CleanProgram[] }
+        setFetchState({ status: 'success', programs: data.programs })
+      } catch {
+        setFetchState({ status: 'error' })
+      }
+    }
+    void loadServices()
+  }, [])
+
+  const filteredServices: Service[] = useMemo(() => {
+    if (activeCategory === 'All') return services
+    if (activeCategory === 'Trial Plans') return services.filter((s) => s.tag === 'Free Trial')
+    return services.filter((s) => s.title.startsWith(activeCategory) && s.tag !== 'Free Trial')
+  }, [activeCategory])
 
   const handleDescriptionClick = (service: Service): void => {
     setModalMode('description')
     setSelectedService(service)
   }
 
-  const handleBuyClick = (service: Service): void => {
-    setModalMode('buy')
+  const handleBuy = (service: Service, plan: CleanPlan | null, program: CleanProgram | null): void => {
     setSelectedService(service)
+    setSelectedRealPlan(plan)
+    setSelectedRealProgram(program)
+    setModalMode('buy')
   }
 
   const closeModal = (): void => {
@@ -169,22 +236,32 @@ function ServicesContent(): JSX.Element {
       <div className="container mx-auto px-6 pt-12">
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
-            {filteredServices.map((service) => (
-              <motion.div
-                layout
-                key={service.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.2 }}
-              >
-                <ServiceCard
-                  service={service}
-                  onDescriptionClick={handleDescriptionClick}
-                  onBuyClick={handleBuyClick}
-                />
-              </motion.div>
-            ))}
+            {filteredServices.map((service, i) => {
+              const { plan, program } = fetchState.status === 'success'
+                ? getPlanForService(service.id, fetchState.programs)
+                : { plan: null, program: null }
+
+              return (
+                <motion.div
+                  layout
+                  key={service.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ServiceCard
+                    service={service}
+                    realPlan={plan}
+                    realProgram={program}
+                    onDescriptionClick={handleDescriptionClick}
+                    onBuyClick={(srv) => handleBuy(srv, plan, program)}
+                    index={i}
+                    isLoadingPrices={fetchState.status === 'loading'}
+                  />
+                </motion.div>
+              )
+            })}
           </AnimatePresence>
         </motion.div>
       </div>
@@ -193,6 +270,8 @@ function ServicesContent(): JSX.Element {
         <ServiceModal
           service={selectedService}
           mode={modalMode}
+          realPlan={selectedRealPlan}
+          realProgram={selectedRealProgram}
           onClose={closeModal}
         />
       )}

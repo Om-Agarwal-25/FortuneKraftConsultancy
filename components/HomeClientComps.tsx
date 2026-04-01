@@ -15,7 +15,7 @@ export function HeroButtons(): JSX.Element {
           Explore Services
         </motion.button>
       </Link>
-      <Link href="/services?tab=Demo">
+      <Link href="/services?tab=Trial+Plans">
         <motion.button
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
