@@ -59,7 +59,6 @@ function getPlanForService(
 
 function ServicesContent(): JSX.Element {
   const searchParams = useSearchParams()
-  const initialTab = searchParams.get('tab') as ServiceCategory | null
 
   const [activeCategory, setActiveCategory] = useState<ServiceCategory>('All')
   const [selectedService, setSelectedService] = useState<Service | null>(null)

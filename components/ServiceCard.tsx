@@ -19,11 +19,9 @@ interface ServiceCardProps {
 export default function ServiceCard({
   service,
   realPlan,
-  realProgram,
   isLoadingPrices,
   onDescriptionClick,
   onBuyClick,
-  index,
 }: ServiceCardProps): JSX.Element {
   return (
     <motion.div
