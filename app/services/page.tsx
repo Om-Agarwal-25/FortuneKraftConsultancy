@@ -235,7 +235,7 @@ function ServicesContent(): JSX.Element {
       <div className="container mx-auto px-6 pt-12">
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
-            {filteredServices.map((service, i) => {
+            {filteredServices.map((service) => {
               const { plan, program } = fetchState.status === 'success'
                 ? getPlanForService(service.id, fetchState.programs)
                 : { plan: null, program: null }
