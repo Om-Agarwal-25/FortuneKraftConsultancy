@@ -22,6 +22,7 @@ export interface CleanPlan {
   gstApplied: boolean
   gstPercentage: number
   discountPercent: number
+  planPurchaseLink: string
 }
 
 export async function GET(): Promise<Response> {
@@ -87,6 +88,7 @@ export async function GET(): Promise<Response> {
               gstApplied: plan.gstToBeApplied,
               gstPercentage: plan.gstPercentage,
               discountPercent,
+              planPurchaseLink: plan.planPurchaseLink ?? '',
             }
           }),
       }))

@@ -8,6 +8,7 @@ export interface TechnotronPricingPlan {
   trialPack: boolean
   gstToBeApplied: boolean
   gstPercentage: number
+  planPurchaseLink: string
 }
 
 export interface TechnotronProgram {

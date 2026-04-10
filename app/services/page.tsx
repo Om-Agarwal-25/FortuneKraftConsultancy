@@ -96,11 +96,10 @@ function ServicesContent(): JSX.Element {
   }
 
   function handleBuy(_service: Service, plan: CleanPlan | null, program: CleanProgram | null): void {
-    if (program?.pricePageLink) {
-      const directUrl = plan?.planId
-        ? `${program.pricePageLink}&planId=${plan.planId}`
-        : program.pricePageLink
-      window.open(directUrl, '_blank', 'noopener,noreferrer')
+    if (plan?.planPurchaseLink) {
+      window.open(plan.planPurchaseLink, '_blank', 'noopener,noreferrer')
+    } else if (program?.pricePageLink) {
+      window.open(program.pricePageLink, '_blank', 'noopener,noreferrer')
     } else {
       window.open('https://services.fortunekraftconsultancy.com', '_blank', 'noopener,noreferrer')
     }

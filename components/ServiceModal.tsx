@@ -384,7 +384,11 @@ export default function ServiceModal({ service, mode, realPlan, realProgram, onC
                             )}
                           </div>
                           <a
-                            href={buyState.status === 'success' ? buyState.program.pricePageLink : '#'}
+                            href={
+                              ('planPurchaseLink' in selectedPlan && selectedPlan.planPurchaseLink)
+                                ? selectedPlan.planPurchaseLink
+                                : (buyState.status === 'success' ? buyState.program.pricePageLink : '#')
+                            }
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-gold text-navy font-bold px-6 py-3 rounded-full hover:bg-gold-light transition-colors text-sm"
