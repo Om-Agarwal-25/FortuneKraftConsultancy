@@ -49,10 +49,33 @@ function getPlanForService(
 
   if (!program) return { plan: null, program: null }
 
-  const plan = program.pricing.find(
+  console.log(`Plans for ${mapping.programName}:`, program.pricing.map((p) => ({
+    duration: p.displayDuration,
+    trialPack: p.trialPack,
+    planPurchaseLink: p.planPurchaseLink,
+  })))
+
+  // Stage 1 — exact duration + trialPack match
+  let plan = program.pricing.find(
     (p) => p.displayDuration.toLowerCase() === mapping.duration.toLowerCase()
       && (mapping.isDemo ? p.trialPack : !p.trialPack)
-  ) ?? program.pricing[0] ?? null
+  ) ?? null
+
+  // Stage 2 — partial duration match (e.g. "30" inside "30 Days")
+  if (!plan) {
+    const firstWord = mapping.duration.split(' ')[0]?.toLowerCase() ?? ''
+    plan = program.pricing.find(
+      (p) => p.displayDuration.toLowerCase().includes(firstWord)
+        && (mapping.isDemo ? p.trialPack : !p.trialPack)
+    ) ?? null
+  }
+
+  // Stage 3 — just find correct trial/non-trial plan
+  if (!plan) {
+    plan = program.pricing.find(
+      (p) => mapping.isDemo ? p.trialPack : !p.trialPack
+    ) ?? program.pricing[0] ?? null
+  }
 
   return { plan, program }
 }
@@ -75,10 +98,17 @@ function ServicesContent(): JSX.Element {
     async function loadServices(): Promise<void> {
       try {
         const res = await fetch('/api/get-all-services')
-        if (!res.ok) throw new Error('Failed')
+        console.log('get-all-services status:', res.status)
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
         const data = await res.json() as { programs: CleanProgram[] }
+        console.log('Programs loaded:', data.programs.map((p) => ({
+          name: p.programName,
+          plans: p.pricing.length,
+          firstPlanLink: p.pricing[0]?.planPurchaseLink,
+        })))
         setFetchState({ status: 'success', programs: data.programs })
-      } catch {
+      } catch (error) {
+        console.error('Failed to load services:', error)
         setFetchState({ status: 'error' })
       }
     }
@@ -96,6 +126,10 @@ function ServicesContent(): JSX.Element {
   }
 
   function handleBuy(_service: Service, plan: CleanPlan | null, program: CleanProgram | null): void {
+    console.log('Buy clicked:', { serviceId: _service.id, plan, program })
+    console.log('Plan purchase link:', plan?.planPurchaseLink)
+    console.log('Program price link:', program?.pricePageLink)
+
     if (plan?.planPurchaseLink) {
       window.open(plan.planPurchaseLink, '_blank', 'noopener,noreferrer')
     } else if (program?.pricePageLink) {
@@ -234,10 +268,10 @@ function ServicesContent(): JSX.Element {
       <div className="container mx-auto px-6 pt-12">
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
-            {filteredServices.map((service) => {
-              const { plan, program } = fetchState.status === 'success'
-                ? getPlanForService(service.id, fetchState.programs)
-                : { plan: null, program: null }
+            {/* Loaded cards — real prices */}
+            {fetchState.status !== 'loading' && filteredServices.map((service) => {
+              const programs = fetchState.status === 'success' ? fetchState.programs : []
+              const { plan, program } = getPlanForService(service.id, programs)
 
               return (
                 <motion.div
@@ -254,11 +288,32 @@ function ServicesContent(): JSX.Element {
                     realProgram={program}
                     onDescriptionClick={handleDescriptionClick}
                     onBuyClick={(srv) => handleBuy(srv, plan, program)}
-                    isLoadingPrices={fetchState.status === 'loading'}
+                    isLoadingPrices={false}
                   />
                 </motion.div>
               )
             })}
+
+            {/* Skeleton cards while loading */}
+            {fetchState.status === 'loading' && filteredServices.map((service) => (
+              <motion.div
+                layout
+                key={service.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ServiceCard
+                  service={service}
+                  realPlan={null}
+                  realProgram={null}
+                  onDescriptionClick={handleDescriptionClick}
+                  onBuyClick={() => {}}
+                  isLoadingPrices={true}
+                />
+              </motion.div>
+            ))}
           </AnimatePresence>
         </motion.div>
       </div>
