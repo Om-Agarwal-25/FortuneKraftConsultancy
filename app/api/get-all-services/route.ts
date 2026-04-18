@@ -31,8 +31,14 @@ export async function GET(): Promise<Response> {
   const apiKey = process.env.TECHNOTRON_API_KEY
 
   if (!apiUrl || !apiId || !apiKey) {
-    return NextResponse.json<ApiErrorResponse>(
-      { error: 'Missing API configuration' },
+    return NextResponse.json(
+      {
+        error: 'Missing environment variables',
+        hasUrl: !!apiUrl,
+        hasId: !!apiId,
+        hasKey: !!apiKey,
+        urlValue: apiUrl ?? 'NOT SET',
+      },
       { status: 500 }
     )
   }
@@ -96,9 +102,15 @@ export async function GET(): Promise<Response> {
     return NextResponse.json({ programs: cleanPrograms })
 
   } catch (error) {
-    console.error('get-all-services error:', error instanceof Error ? error.message : error)
-    return NextResponse.json<ApiErrorResponse>(
-      { error: 'Failed to fetch services' },
+    const message = error instanceof Error ? error.message : String(error)
+    const stack = error instanceof Error ? error.stack : undefined
+    console.error('get-all-services full error:', { message, stack })
+    return NextResponse.json(
+      {
+        error: 'Failed to fetch services',
+        details: message,
+        hint: 'Check if TECHNOTRON_API_URL, TECHNOTRON_API_ID, TECHNOTRON_API_KEY are set in environment variables',
+      },
       { status: 500 }
     )
   }
