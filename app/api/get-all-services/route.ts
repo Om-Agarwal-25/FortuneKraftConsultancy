@@ -1,6 +1,4 @@
-import { NextResponse } from 'next/server'
 import type { TechnotronApiResponse } from '@/types/api'
-import type { ApiErrorResponse } from '@/types'
 
 export interface CleanProgram {
   programId: string
@@ -31,16 +29,12 @@ export async function GET(): Promise<Response> {
   const apiKey = process.env.TECHNOTRON_API_KEY
 
   if (!apiUrl || !apiId || !apiKey) {
-    return NextResponse.json(
-      {
-        error: 'Missing environment variables',
-        hasUrl: !!apiUrl,
-        hasId: !!apiId,
-        hasKey: !!apiKey,
-        urlValue: apiUrl ?? 'NOT SET',
-      },
-      { status: 500 }
-    )
+    return Response.json({
+      error: 'Missing environment variables',
+      hasUrl: !!apiUrl,
+      hasId: !!apiId,
+      hasKey: !!apiKey,
+    }, { status: 500 })
   }
 
   try {
@@ -51,18 +45,45 @@ export async function GET(): Promise<Response> {
         'apiId': apiId,
         'apiKey': apiKey,
       },
-      body: JSON.stringify({ scope: 'fetchAll', showPrice: 'min' }),
+      body: JSON.stringify({
+        scope: 'fetchAll',
+        showPrice: 'min',
+      }),
       cache: 'no-store',
     })
 
+    console.log('Technotron HTTP status:', response.status)
+    console.log('Technotron content-type:', response.headers.get('content-type'))
+
     const rawText = await response.text()
-    const data = JSON.parse(rawText) as TechnotronApiResponse
+    console.log('Technotron raw response length:', rawText.length)
+    console.log('Technotron raw response preview:', rawText.substring(0, 500))
+
+    if (!rawText || rawText.trim() === '') {
+      return Response.json({
+        error: 'Technotron returned empty response',
+        httpStatus: response.status,
+        contentType: response.headers.get('content-type'),
+      }, { status: 500 })
+    }
+
+    let data: TechnotronApiResponse
+    try {
+      data = JSON.parse(rawText) as TechnotronApiResponse
+    } catch (parseError) {
+      return Response.json({
+        error: 'Technotron returned invalid JSON',
+        httpStatus: response.status,
+        rawPreview: rawText.substring(0, 200),
+        parseError: parseError instanceof Error ? parseError.message : String(parseError),
+      }, { status: 500 })
+    }
 
     if (!data.status) {
-      return NextResponse.json<ApiErrorResponse>(
-        { error: data.message },
-        { status: response.status }
-      )
+      return Response.json({
+        error: data.message,
+        httpStatus: response.status,
+      }, { status: response.status })
     }
 
     const cleanPrograms: CleanProgram[] = data.data
@@ -99,19 +120,14 @@ export async function GET(): Promise<Response> {
           }),
       }))
 
-    return NextResponse.json({ programs: cleanPrograms })
+    return Response.json({ programs: cleanPrograms })
 
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
-    const stack = error instanceof Error ? error.stack : undefined
-    console.error('get-all-services full error:', { message, stack })
-    return NextResponse.json(
-      {
-        error: 'Failed to fetch services',
-        details: message,
-        hint: 'Check if TECHNOTRON_API_URL, TECHNOTRON_API_ID, TECHNOTRON_API_KEY are set in environment variables',
-      },
-      { status: 500 }
-    )
+    console.error('get-all-services error:', message)
+    return Response.json({
+      error: 'Failed to fetch services',
+      details: message,
+    }, { status: 500 })
   }
 }
