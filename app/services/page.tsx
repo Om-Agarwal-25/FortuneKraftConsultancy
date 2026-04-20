@@ -10,6 +10,7 @@ import ServiceModal from '@/components/ServiceModal'
 import Link from 'next/link'
 import { Zap, Moon, TrendingUp } from 'lucide-react'
 import type { CleanProgram, CleanPlan } from '@/app/api/get-all-services/route'
+import * as ClientComps from '@/app/about/ClientComps'
 
 export type ServiceCategory = 'All' | 'Intraday Alpha' | 'BTST Alpha' | 'Positional Alpha' | 'Trial Plans'
 
@@ -21,19 +22,19 @@ type FetchState =
   | { status: 'error' }
 
 const SERVICE_MAP: Record<string, { programName: string; duration: string; isDemo: boolean }> = {
-  'intraday-alpha-1m':  { programName: 'Intraday Alpha', duration: '30 days', isDemo: false },
-  'intraday-alpha-3m':  { programName: 'Intraday Alpha', duration: '3 months', isDemo: false },
-  'intraday-alpha-1y':  { programName: 'Intraday Alpha', duration: '12 months', isDemo: false },
-  'intraday-alpha-demo':{ programName: 'Intraday Alpha', duration: '7 days', isDemo: true },
-  'btst-alpha-1m':      { programName: 'BTST ALPHA', duration: '30 days', isDemo: false },
-  'btst-alpha-3m':      { programName: 'BTST ALPHA', duration: '3 months', isDemo: false },
-  'btst-alpha-1y':      { programName: 'BTST ALPHA', duration: '12 months', isDemo: false },
-  'btst-alpha-demo':    { programName: 'BTST ALPHA', duration: '7 days', isDemo: true },
-  'positional-alpha-1m':{ programName: 'Positional Alpha', duration: '30 days', isDemo: false },
-  'positional-alpha-3m':{ programName: 'Positional Alpha', duration: '3 months', isDemo: false },
-  'positional-alpha-1y':{ programName: 'Positional Alpha', duration: '12 months', isDemo: false },
-  'positional-alpha-demo':{ programName: 'Positional Alpha', duration: '7 days', isDemo: true },
-  'free-demo-service':  { programName: 'Free Demo Service', duration: '2 days', isDemo: true },
+  'intraday-alpha-1m': { programName: 'Intraday Alpha', duration: '30 days', isDemo: false },
+  'intraday-alpha-3m': { programName: 'Intraday Alpha', duration: '3 months', isDemo: false },
+  'intraday-alpha-1y': { programName: 'Intraday Alpha', duration: '12 months', isDemo: false },
+  'intraday-alpha-demo': { programName: 'Intraday Alpha', duration: '7 days', isDemo: true },
+  'btst-alpha-1m': { programName: 'BTST ALPHA', duration: '30 days', isDemo: false },
+  'btst-alpha-3m': { programName: 'BTST ALPHA', duration: '3 months', isDemo: false },
+  'btst-alpha-1y': { programName: 'BTST ALPHA', duration: '12 months', isDemo: false },
+  'btst-alpha-demo': { programName: 'BTST ALPHA', duration: '7 days', isDemo: true },
+  'positional-alpha-1m': { programName: 'Positional Alpha', duration: '30 days', isDemo: false },
+  'positional-alpha-3m': { programName: 'Positional Alpha', duration: '3 months', isDemo: false },
+  'positional-alpha-1y': { programName: 'Positional Alpha', duration: '12 months', isDemo: false },
+  'positional-alpha-demo': { programName: 'Positional Alpha', duration: '7 days', isDemo: true },
+  'free-demo-service': { programName: 'Free Demo Service', duration: '2 days', isDemo: true },
 }
 
 function getPlanForService(
@@ -145,19 +146,33 @@ function ServicesContent(): JSX.Element {
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] pb-24">
-      <section className="bg-gradient-to-br from-[#0A1628] to-[#1a3a5c] pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(240,165,0,0.4) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+      <section className="relative bg-[#0A1628] text-white pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden flex flex-col items-center justify-center min-h-[380px]">
+        {/* Abstract Gold Background Elements */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold opacity-[0.05] rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-gold opacity-[0.03] rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2" />
+
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="text-gold text-sm font-semibold tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="text-white/50">&gt;</span>
-            <span>Our Services</span>
-          </div>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white font-bold mb-6">Our Services</h1>
-          <p className="text-gray-300 max-w-2xl mx-auto text-lg">Explore our research service plans, designed to match your trading style and risk appetite.</p>
+          <ClientComps.FadeIn>
+            <div className="text-gold text-sm font-semibold tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <span className="text-white/50">&gt;</span>
+              <span>Our Services</span>
+            </div>
+          </ClientComps.FadeIn>
+
+          <ClientComps.FadeIn delay={0.1}>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white font-bold mb-6">
+              Our Services
+            </h1>
+          </ClientComps.FadeIn>
+
+          <ClientComps.FadeIn delay={0.2}>
+            <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+              Explore our research service plans, designed to match your trading style and risk appetite.
+            </p>
+          </ClientComps.FadeIn>
         </div>
       </section>
-
       {/* OVERVIEW SECTION */}
       <section className="bg-[#F8F9FA] py-16 -mt-8 relative z-20">
         <div className="container mx-auto px-6">
@@ -309,7 +324,7 @@ function ServicesContent(): JSX.Element {
                   realPlan={null}
                   realProgram={null}
                   onDescriptionClick={handleDescriptionClick}
-                  onBuyClick={() => {}}
+                  onBuyClick={() => { }}
                   isLoadingPrices={true}
                 />
               </motion.div>

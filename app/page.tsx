@@ -374,9 +374,6 @@ export default function Home(): JSX.Element {
                 key={i}
                 className="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative"
               >
-                <div className="text-gold text-6xl font-serif absolute top-4 left-6 opacity-20">
-                  &quot;
-                </div>
                 <div className="flex text-gold mb-6 relative z-10">
                   {[...Array(5)].map((_, idx) => (
                     <svg

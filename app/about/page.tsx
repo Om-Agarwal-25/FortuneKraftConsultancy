@@ -137,8 +137,8 @@ export default function AboutPage() {
                     <span
                       key={tag.label}
                       className={`px-3 py-1.5 text-xs font-semibold rounded-full ${tag.dark
-                          ? 'bg-navy text-gold'
-                          : 'bg-[#F8F9FA] text-navy border border-[#0A1628]/10'
+                        ? 'bg-navy text-gold'
+                        : 'bg-[#F8F9FA] text-navy border border-[#0A1628]/10'
                         }`}
                     >
                       {tag.label}
