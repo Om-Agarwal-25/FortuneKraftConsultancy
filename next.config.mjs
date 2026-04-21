@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone', 
-  
+  output: 'standalone',
+
   experimental: {
     optimizePackageImports: ["framer-motion", "lucide-react"],
   },
@@ -14,9 +14,6 @@ const nextConfig = {
         hostname: 'images.unsplash.com',
       },
     ],
-  },
-  compiler: {
-    removeConsole: process.env.NODE_ENV === "production",
   },
 };
 
