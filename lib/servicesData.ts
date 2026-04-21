@@ -9,6 +9,7 @@ export const services: Service[] = [
     duration: '1 Month',
     price: '₹5,000',
     tag: 'Most Popular',
+    targetAudience: 'Trader',
     description: 'Intraday Alpha is a cash-market intraday trading research service designed for traders looking to capture short-term opportunities within the same trading day. Our research professionals analyze market movements using structured technical methods to identify high-potential trading setups.',
     features: [
       '1–2 intraday trades per day',
@@ -27,6 +28,7 @@ export const services: Service[] = [
     duration: '3 Months',
     price: '₹12,000',
     tag: 'Best Value',
+    targetAudience: 'Trader',
     description: 'Intraday Alpha is a cash-market intraday trading research service designed for traders looking to capture short-term opportunities within the same trading day. Our research professionals analyze market movements using structured technical methods to identify high-potential trading setups.',
     features: [
       '1–2 intraday trades per day',
@@ -45,6 +47,7 @@ export const services: Service[] = [
     duration: '12 Months',
     price: '₹36,000',
     tag: null,
+    targetAudience: 'Trader',
     description: 'Intraday Alpha is a cash-market intraday trading research service designed for traders looking to capture short-term opportunities within the same trading day. Our research professionals analyze market movements using structured technical methods to identify high-potential trading setups.',
     features: [
       '1–2 intraday trades per day',
@@ -65,6 +68,7 @@ export const services: Service[] = [
     duration: '1 Month',
     price: '₹5,000',
     tag: 'Most Popular',
+    targetAudience: 'Trader',
     description: 'BTST Alpha (Buy Today, Sell Tomorrow) is designed for traders who want to benefit from potential overnight price momentum in carefully selected stocks. Take a position near the end of the trading session and exit the next day to capture favourable price movements.',
     features: [
       '1 high-conviction BTST trade per day',
@@ -83,6 +87,7 @@ export const services: Service[] = [
     duration: '3 Months',
     price: '₹12,000',
     tag: 'Best Value',
+    targetAudience: 'Trader',
     description: 'BTST Alpha (Buy Today, Sell Tomorrow) is designed for traders who want to benefit from potential overnight price momentum in carefully selected stocks. Take a position near the end of the trading session and exit the next day to capture favourable price movements.',
     features: [
       '1 high-conviction BTST trade per day',
@@ -101,6 +106,7 @@ export const services: Service[] = [
     duration: '12 Months',
     price: '₹36,000',
     tag: null,
+    targetAudience: 'Trader',
     description: 'BTST Alpha (Buy Today, Sell Tomorrow) is designed for traders who want to benefit from potential overnight price momentum in carefully selected stocks. Take a position near the end of the trading session and exit the next day to capture favourable price movements.',
     features: [
       '1 high-conviction BTST trade per day',
@@ -121,6 +127,7 @@ export const services: Service[] = [
     duration: '1 Month',
     price: '₹6,000',
     tag: null,
+    targetAudience: 'Trader',
     description: 'Positional Alpha is a positional trading research service designed for traders who want to benefit from short-term market trends without the pressure of daily trading. Hold stocks for several days to a few weeks to capture meaningful price movements.',
     features: [
       '3–4 trades per month',
@@ -139,6 +146,7 @@ export const services: Service[] = [
     duration: '3 Months',
     price: '₹15,000',
     tag: 'Best Value',
+    targetAudience: 'Trader',
     description: 'Positional Alpha is a positional trading research service designed for traders who want to benefit from short-term market trends without the pressure of daily trading. Hold stocks for several days to a few weeks to capture meaningful price movements.',
     features: [
       '3–4 trades per month',
@@ -157,6 +165,7 @@ export const services: Service[] = [
     duration: '12 Months',
     price: '₹48,000',
     tag: null,
+    targetAudience: 'Trader',
     description: 'Positional Alpha is a positional trading research service designed for traders who want to benefit from short-term market trends without the pressure of daily trading. Hold stocks for several days to a few weeks to capture meaningful price movements.',
     features: [
       '3–4 trades per month',
@@ -168,7 +177,8 @@ export const services: Service[] = [
       'Dedicated support',
     ],
   },
-  // DEMO PLANS
+
+  // DEMO / TRIAL PLANS
   {
     id: 'intraday-alpha-demo',
     title: 'Intraday Alpha — Trial',
@@ -176,6 +186,8 @@ export const services: Service[] = [
     duration: '7 Days',
     price: '₹300',
     tag: 'Free Trial',
+    targetAudience: 'Trader',
+    isTrial: true,
     description: 'Try Intraday Alpha for 7 days at a minimal cost before committing to a full plan.',
     features: ['1–2 intraday trades', 'WhatsApp alerts', 'Entry, target & stop-loss', 'No commitment'],
   },
@@ -186,6 +198,8 @@ export const services: Service[] = [
     duration: '7 Days',
     price: '₹300',
     tag: 'Free Trial',
+    targetAudience: 'Trader',
+    isTrial: true,
     description: 'Try BTST Alpha for 7 days at a minimal cost before committing to a full plan.',
     features: ['1 BTST trade', 'WhatsApp alerts', 'Entry, target & stop-loss', 'No commitment'],
   },
@@ -196,7 +210,80 @@ export const services: Service[] = [
     duration: '7 Days',
     price: '₹300',
     tag: 'Free Trial',
+    targetAudience: 'Trader',
+    isTrial: true,
     description: 'Try Positional Alpha for 7 days at a minimal cost before committing to a full plan.',
     features: ['1–2 positional trades', 'WhatsApp alerts', 'Entry, target & stop-loss', 'No commitment'],
+  },
+  {
+    id: 'free-demo-service',
+    title: 'Free Demo Service',
+    category: 'Trial Plans',
+    duration: '2 Days',
+    price: '₹118',
+    tag: 'Free Trial',
+    targetAudience: 'Trader',
+    isTrial: true,
+    description: 'Experience our research quality with a 2-day demo at a minimal cost. No commitment required.',
+    features: ['Live trade alerts', 'WhatsApp alerts', 'Entry, target & stop-loss', 'No commitment'],
+  },
+
+  // CAPITAL COMPOUNDERS — INVESTOR SERVICE
+  {
+    id: 'capital-compounders-1m',
+    title: 'Capital Compounders — 1 Month',
+    category: 'Investor',
+    duration: '1 Month',
+    price: '₹3,000',
+    tag: null,
+    targetAudience: 'Investor',
+    description: 'Medium-term equity strategy focusing on fundamentally strong companies for consistent compounding. 1 high-conviction recommendation per month.',
+    features: [
+      '1 Trade/Month',
+      '12-24 Month Hold',
+      '25-35% Target Return',
+      'Detailed investment rationale report',
+      'Quarterly updates on open positions',
+      'WhatsApp alerts',
+      'Dedicated support',
+    ],
+  },
+  {
+    id: 'capital-compounders-3m',
+    title: 'Capital Compounders — 3 Months',
+    category: 'Investor',
+    duration: '3 Months',
+    price: '₹7,500',
+    tag: 'Best Value',
+    targetAudience: 'Investor',
+    description: 'Medium-term equity strategy focusing on fundamentally strong companies for consistent compounding. 1 high-conviction recommendation per month.',
+    features: [
+      '1 Trade/Month',
+      '12-24 Month Hold',
+      '25-35% Target Return',
+      'Detailed investment rationale report',
+      'Quarterly updates on open positions',
+      'WhatsApp alerts',
+      'Dedicated support',
+    ],
+  },
+  {
+    id: 'capital-compounders-1y',
+    title: 'Capital Compounders — Annual',
+    category: 'Investor',
+    duration: '12 Months',
+    price: '₹23,000',
+    tag: 'Most Popular',
+    targetAudience: 'Investor',
+    description: 'Medium-term equity strategy focusing on fundamentally strong companies for consistent compounding. 1 high-conviction recommendation per month.',
+    features: [
+      '1 Trade/Month',
+      '12-24 Month Hold',
+      '25-35% Target Return',
+      'Detailed investment rationale report',
+      'Quarterly updates on open positions',
+      'WhatsApp alerts',
+      'Dedicated support',
+    ],
   },
 ]

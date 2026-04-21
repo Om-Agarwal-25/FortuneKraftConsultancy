@@ -214,4 +214,68 @@ export const serviceDescriptions: Record<string, ServiceDescription> = {
     importantNote: 'Positional trading involves market risk and price fluctuations over multiple days. Traders are encouraged to follow recommended entry levels, stop-loss guidelines, and position sizing strategies to manage risk effectively.',
     riskNote: 'Positional trading involves market risk and price fluctuations over multiple days. Investment in securities market are subject to market risks. Read all related documents carefully before investing.',
   },
+
+  'Capital Compounders': {
+    id: 'capital-compounders',
+    title: 'Capital Compounders',
+    tagline: 'Disciplined equity selection focused on fundamental strength and consistent compounding.',
+    overview: 'Capital Compounders is designed for investors seeking to generate superior returns through steady compounding rather than sporadic high-risk gains. We focus on established or emerging sector leaders with robust earnings visibility, scalable business models, and prudent capital allocation. The objective is to target 25% to 35% returns over a 12 to 24-month holding period.',
+    whyChoose: [
+      {
+        title: '1 High-Conviction Stock per Month',
+        description: 'We research deeply before recommending. One carefully selected, fundamentally strong stock is shared each month rather than many low-quality ideas.',
+      },
+      {
+        title: 'Detailed Investment Rationale Report',
+        description: 'Every recommendation is accompanied by a comprehensive report covering business model, growth drivers, valuation analysis, and risk factors — empowering informed decisions.',
+      },
+      {
+        title: 'Quarterly Updates on Open Positions',
+        description: 'You receive structured quarterly reviews on all active positions, keeping you informed on the investment thesis and whether to hold, add, or exit.',
+      },
+    ],
+    keyHighlights: [
+      {
+        title: 'Industry Outlook',
+        description: 'Each recommendation begins with an analysis of the sector landscape, tailwinds, and competitive dynamics to ensure the business is in the right environment to grow.',
+      },
+      {
+        title: 'Governance Quality',
+        description: 'We evaluate management track record, capital allocation discipline, promoter credibility, and board transparency as core selection criteria.',
+      },
+      {
+        title: 'Market Conviction',
+        description: 'We assess institutional interest, smart money positioning, and broader market sentiment to time entry into fundamentally strong businesses at attractive valuations.',
+      },
+      {
+        title: 'Fundamental Strength',
+        description: 'Revenue growth consistency, margin expansion, return on equity, debt levels, and free cash flow generation are rigorously assessed before any recommendation.',
+      },
+      {
+        title: 'Valuation Comfort',
+        description: 'We seek to identify stocks where the current market price offers a meaningful margin of safety relative to intrinsic value, ensuring the risk-reward remains favourable.',
+      },
+    ],
+    delivery: 'Investment recommendations and quarterly portfolio updates are delivered through WhatsApp and email, ensuring you receive timely and actionable research directly.',
+    frequency: '1 stock/month',
+    holdingPeriod: '12–24 months',
+    whoIsItFor: [
+      'Long-term investors seeking consistent equity compounding',
+      'Individuals who prefer research-backed fundamental investing',
+      'Investors with 12–24 month outlook and patience for quality businesses',
+      'Those seeking an alternative to short-term speculative trading',
+    ],
+    howRecommendationsWork: {
+      title: 'Our Evaluation Process',
+      points: [
+        'Industry Outlook — sector tailwinds and competitive positioning',
+        'Governance Quality — management credibility and capital discipline',
+        'Market Conviction — institutional interest and sentiment alignment',
+        'Fundamental Strength — earnings quality, return ratios, and cash flow',
+        'Valuation Comfort — intrinsic value assessment and margin of safety',
+      ],
+    },
+    importantNote: 'Capital Compounders is a long-term investment research service. Returns are not guaranteed and depend on individual market conditions. Investors should have a 12–24 month horizon and be comfortable with equity market volatility.',
+    riskNote: 'Investments in securities market are subject to market risks. Read all related documents carefully before investing. Past performance is not indicative of future results. Please invest based on your own risk appetite and financial goals.',
+  },
 }

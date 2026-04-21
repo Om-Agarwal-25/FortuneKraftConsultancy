@@ -28,6 +28,7 @@ const SERVICE_LINKS: NavLink[] = [
   { label: 'BTST Alpha', href: '/services?tab=BTST+Alpha' },
   { label: 'Positional Alpha', href: '/services?tab=Positional+Alpha' },
   { label: 'Trial Plans', href: '/services?tab=Trial+Plans' },
+  { label: 'Capital Compounders', href: '/services?tab=Capital+Compounders' },
 ];
 
 interface SocialLink {

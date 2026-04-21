@@ -1,12 +1,14 @@
 export interface Service {
   id: string
   title: string
-  category: 'Equity Cash' | 'Equity Premium' | 'F&O' | 'Demo'
+  category: 'Equity Cash' | 'Equity Premium' | 'F&O' | 'Demo' | 'Investor' | 'Trial Plans'
   duration: string
   price: string
   tag: 'Most Popular' | 'Best Value' | 'Free Trial' | null
   description: string
   features: string[]
+  targetAudience: 'Trader' | 'Investor'
+  isTrial?: boolean
 }
 
 export interface ApiServiceResponse {
@@ -35,7 +37,7 @@ export type ContactSubject =
   | 'Lodge a Complaint'
   | 'Partnership Opportunity'
   | 'Technical Support'
-export type ServiceCategory = 'All' | 'Intraday Alpha' | 'BTST Alpha' | 'Positional Alpha'
+export type ServiceCategory = 'All' | 'Intraday Alpha' | 'BTST Alpha' | 'Positional Alpha' | 'Capital Compounders' | 'Trial Plans'
 export type ModalMode = 'description' | 'buy'
 
 export interface NavLink {
