@@ -1,6 +1,4 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-
 export const metadata: Metadata = {
   title: 'Complaint Table | Fortune Kraft Consultancy',
   description: 'Monthly complaint table for Fortune Kraft Consultancy as per SEBI requirements. Updated before the 7th of every month.',
@@ -25,11 +23,7 @@ export default function ComplaintTablePage() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#F0A500] opacity-[0.05] rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#F0A500] opacity-[0.03] rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2" />
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="text-[#F0A500] text-sm font-semibold tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="text-white/50">&gt;</span>
-            <span>Complaint Table</span>
-          </div>
+
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white font-bold mb-6">
             Complaint Table
           </h1>

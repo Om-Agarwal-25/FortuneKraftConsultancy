@@ -59,16 +59,7 @@ export default function Navbar(): JSX.Element {
 
   const pathname: string = usePathname();
 
-  function handleGetStarted(): void {
-    if (pathname === '/') {
-      const section = document.getElementById('how-it-works')
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    } else {
-      window.location.href = '/services'
-    }
-  }
+  const isServicesPage = pathname === '/services';
   const { scrollY }: { scrollY: MotionValue<number> } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest: number) => {
@@ -99,53 +90,56 @@ export default function Navbar(): JSX.Element {
         transition={{ duration: 0.3 }}
         className="fixed top-0 left-0 right-0 z-[100] px-6 lg:px-12 flex items-center justify-between"
       >
-        <Link
-          href="/"
-          className="flex items-center gap-2 px-3 py-2 md:gap-3 md:px-4 md:py-2.5 rounded-xl"
-          style={{
-            background: 'rgba(10,22,40,0.7)',
-            backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(240,165,0,0.4)',
-            boxShadow: '0 0 12px rgba(240,165,0,0.15)',
-          }}
-        >
-          <div className="relative w-10 h-10 md:w-14 md:h-14">
-            <Image
-              src="/logo.png"
-              alt="FortuneKraft Consultancy"
-              fill
-              sizes="(max-width: 768px) 40px, 56px"
-              className="object-contain bg-white rounded-xl"
-              priority
-              style={{ mixBlendMode: 'screen' }}
-            />
-          </div>
-          <span className="hidden md:block leading-tight">
-            <span
-              className="block font-display font-bold text-xl tracking-wide"
-              style={{
-                background: 'linear-gradient(90deg, #c47f00 0%, #F0A500 30%, #FFE566 55%, #F0A500 75%, #c47f00 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                filter: 'drop-shadow(0 0 10px rgba(240,165,0,0.4))',
-              }}
-            >
-              FortuneKraft
+        {/* Left — Logo */}
+        <div className="flex-1 flex justify-start">
+          <Link
+            href="/"
+            className="flex items-center gap-2 px-3 py-2 md:gap-3 md:px-4 md:py-2.5 rounded-xl"
+            style={{
+              background: 'rgba(10,22,40,0.7)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(240,165,0,0.4)',
+              boxShadow: '0 0 12px rgba(240,165,0,0.15)',
+            }}
+          >
+            <div className="relative w-10 h-10 md:w-14 md:h-14">
+              <Image
+                src="/logo.png"
+                alt="FortuneKraft Consultancy"
+                fill
+                sizes="(max-width: 768px) 40px, 56px"
+                className="object-contain bg-white rounded-xl"
+                priority
+                style={{ mixBlendMode: 'screen' }}
+              />
+            </div>
+            <span className="hidden md:block leading-tight">
+              <span
+                className="block font-display font-bold text-xl tracking-wide"
+                style={{
+                  background: 'linear-gradient(90deg, #c47f00 0%, #F0A500 30%, #FFE566 55%, #F0A500 75%, #c47f00 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  filter: 'drop-shadow(0 0 10px rgba(240,165,0,0.4))',
+                }}
+              >
+                FortuneKraft
+              </span>
+              <span
+                className="block text-[11px] tracking-[0.35em] uppercase font-sans"
+                style={{
+                  color: 'rgba(240,165,0,0.65)',
+                  textShadow: '0 0 12px rgba(240,165,0,0.25)',
+                }}
+              >
+                Consultancy
+              </span>
             </span>
-            <span
-              className="block text-[11px] tracking-[0.35em] uppercase font-sans"
-              style={{
-                color: 'rgba(240,165,0,0.65)',
-                textShadow: '0 0 12px rgba(240,165,0,0.25)',
-              }}
-            >
-              Consultancy
-            </span>
-          </span>
-        </Link>
+          </Link>
+        </div>
 
-        {/* Desktop Links */}
+        {/* Center — Desktop Nav Links */}
         <nav className="hidden lg:flex items-center gap-8">
           {NAV_LINKS.map((link) => {
             const isActive = pathname === link.href;
@@ -162,17 +156,20 @@ export default function Navbar(): JSX.Element {
           })}
         </nav>
 
-        {/* CTA Button */}
-        <div className="hidden lg:block">
-          <motion.button
-            onClick={handleGetStarted}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-gold text-navy font-semibold px-6 py-2.5 rounded-full relative overflow-hidden group"
-          >
-            <span className="relative z-10">Get Started</span>
-            <motion.div className="absolute inset-0 bg-white/30 transform -skew-x-[20deg] -translate-x-full group-hover:animate-[shimmer_1s_infinite]" />
-          </motion.button>
+        {/* Right — CTA Button (always present to balance flex layout) */}
+        <div className="flex-1 hidden lg:flex justify-end">
+          {!isServicesPage && (
+            <Link href="/services">
+              <motion.span
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-block bg-gold text-navy font-semibold px-6 py-2.5 rounded-full relative overflow-hidden group cursor-pointer"
+              >
+                <span className="relative z-10">Get Started</span>
+                <motion.div className="absolute inset-0 bg-white/30 transform -skew-x-[20deg] -translate-x-full group-hover:animate-[shimmer_1s_infinite]" />
+              </motion.span>
+            </Link>
+          )}
         </div>
 
         {/* Mobile Hamburger */}
@@ -209,17 +206,17 @@ export default function Navbar(): JSX.Element {
                 </motion.div>
               ))}
             </div>
-            <motion.div variants={MOBILE_LINK_VARIANTS} className="mt-12">
-              <button
-                onClick={() => {
-                  closeMenu()
-                  handleGetStarted()
-                }}
-                className="block text-center w-full bg-gold text-navy font-semibold py-4 rounded-xl text-lg relative overflow-hidden group hover:bg-gold-light transition-colors duration-200"
-              >
-                Get Started
-              </button>
-            </motion.div>
+            {!isServicesPage && (
+              <motion.div variants={MOBILE_LINK_VARIANTS} className="mt-12">
+                <Link
+                  href="/services"
+                  onClick={closeMenu}
+                  className="block text-center w-full bg-gold text-navy font-semibold py-4 rounded-xl text-lg relative overflow-hidden group hover:bg-gold-light transition-colors duration-200"
+                >
+                  Get Started
+                </Link>
+              </motion.div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

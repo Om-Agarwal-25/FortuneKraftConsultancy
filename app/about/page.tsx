@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import Image from 'next/image'
 import * as ClientComps from './ClientComps'
 
@@ -18,13 +17,6 @@ export default function AboutPage() {
         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-gold opacity-[0.03] rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2" />
 
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <ClientComps.FadeIn>
-            <div className="text-gold text-sm font-semibold tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <span className="text-white/50">&gt;</span>
-              <span>About</span>
-            </div>
-          </ClientComps.FadeIn>
 
           <ClientComps.FadeIn delay={0.1}>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white font-bold mb-6">
