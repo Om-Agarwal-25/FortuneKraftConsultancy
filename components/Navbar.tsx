@@ -109,7 +109,6 @@ export default function Navbar(): JSX.Element {
                 fill
                 sizes="(max-width: 768px) 40px, 56px"
                 className="object-contain bg-white rounded-xl"
-                priority
                 style={{ mixBlendMode: 'screen' }}
               />
             </div>
