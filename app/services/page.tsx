@@ -147,8 +147,13 @@ function ServicesContent(): JSX.Element {
     async function loadServices(): Promise<void> {
       try {
         const res = await fetch('/api/get-all-services')
-        if (!res.ok) throw new Error(`HTTP ${res.status}`)
-        const data = await res.json() as { programs: CleanProgram[] }
+        if (!res.ok) {
+          throw new Error('Backend returned an error state')
+        }
+        const data = await res.json() as { programs: CleanProgram[], status?: boolean, success?: boolean }
+        if (!data || data.status === false || data.success === false) {
+          throw new Error('API data fetch failed')
+        }
         setFetchState({ status: 'success', programs: data.programs })
       } catch (error) {
         console.error('Failed to load services:', error)
