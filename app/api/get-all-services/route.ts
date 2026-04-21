@@ -56,7 +56,7 @@ export async function GET(): Promise<Response> {
     let data: TechnotronApiResponse;
     try {
       data = JSON.parse(rawText) as TechnotronApiResponse;
-    } catch (_) {
+    } catch {
       console.error("TECHNOTRON API RETURNED NON-JSON TEXT:", rawText);
       return NextResponse.json(
         { success: false, message: "API returned invalid JSON format." }, 
