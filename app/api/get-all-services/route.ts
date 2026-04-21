@@ -40,63 +40,28 @@ export async function GET(): Promise<Response> {
   }
 
   try {
-    // ── 1. Fetch from Technotron ──────────────────────────────────────────────
     const response = await fetch(apiUrl, {
       method: 'POST',
+      cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
-        'apiId':  apiId,
-        'apiKey': apiKey,
+        'apiId': apiId,
+        'apiKey': apiKey
       },
-      body: JSON.stringify({ scope: 'fetchAll', showPrice: 'min' }),
-      cache: 'no-store',
-    })
+      body: JSON.stringify({ scope: 'fetchAll' })
+    });
 
-    console.log('Technotron HTTP status:  ', response.status)
-    console.log('Technotron Content-Type: ', response.headers.get('content-type'))
+    const rawText = await response.text();
 
-    // ── 2. HTML guard ─────────────────────────────────────────────────────────
-    //    Technotron returns an HTML error page when the IP is not whitelisted
-    //    or the credentials are wrong. Detect this BEFORE calling .json() so
-    //    we never crash on unexpected markup.
-    const contentType = response.headers.get('content-type') ?? ''
-    if (contentType.includes('text/html')) {
-      const htmlText = await response.text()
-      console.error(
-        '\n⚠️  TECHNOTRON API RETURNED HTML INSTEAD OF JSON ⚠️\n' +
-        'Likely cause: IP not whitelisted or invalid API credentials.\n' +
-        'TECHNOTRON HTML ERROR:\n',
-        htmlText,
-      )
-      return NextResponse.json({
-        status: false,
-        message: 'API returned HTML instead of JSON. Check API Key/IP.',
-      }, { status: 502 })
-    }
-
-    // ── 3. Parse JSON ─────────────────────────────────────────────────────────
-    const rawText = await response.text()
-    console.log('Technotron raw length:  ', rawText.length)
-    console.log('Technotron raw preview: ', rawText.substring(0, 300))
-
-    if (!rawText || rawText.trim() === '') {
-      return NextResponse.json({
-        status: false,
-        message: 'Technotron returned an empty response.',
-        httpStatus: response.status,
-      }, { status: 502 })
-    }
-
-    let data: TechnotronApiResponse
+    let data: TechnotronApiResponse;
     try {
-      data = JSON.parse(rawText) as TechnotronApiResponse
+      data = JSON.parse(rawText) as TechnotronApiResponse;
     } catch (parseError) {
-      console.error('Technotron JSON parse error:', parseError)
-      return NextResponse.json({
-        status: false,
-        message: 'Technotron returned invalid JSON.',
-        rawPreview: rawText.substring(0, 200),
-      }, { status: 502 })
+      console.error("TECHNOTRON API RETURNED NON-JSON TEXT:", rawText);
+      return NextResponse.json(
+        { success: false, message: "API returned invalid JSON format." }, 
+        { status: 502 }
+      );
     }
 
     // ── 4. Business-logic check ───────────────────────────────────────────────
@@ -145,13 +110,10 @@ export async function GET(): Promise<Response> {
     return NextResponse.json({ programs: cleanPrograms })
 
   } catch (error) {
-    // ── Network / runtime failure ─────────────────────────────────────────────
-    const message = error instanceof Error ? error.message : String(error)
-    console.error('get-all-services fetch failed:', message)
-    return NextResponse.json({
-      status: false,
-      message: 'Failed to reach the Technotron API.',
-      details: message,
-    }, { status: 502 })
+    console.error("API FETCH FAILED COMPLETELY:", error);
+    return NextResponse.json(
+      { success: false, message: "Server fetch error." }, 
+      { status: 500 }
+    );
   }
 }
