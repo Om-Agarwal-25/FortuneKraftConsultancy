@@ -173,12 +173,21 @@ function ServicesContent(): JSX.Element {
     setSelectedService(service)
   }
 
-  function handleBuy(_service: Service, plan: CleanPlan | null, program: CleanProgram | null): void {
-    if (plan?.planPurchaseLink) {
+  function handleBuy(service: Service, plan: CleanPlan | null, program: CleanProgram | null): void {
+    // Only trust API-sourced links when the fetch actually succeeded.
+    // If the API failed or is still loading, fall through to the hardcoded fallback
+    // so the user is never silently sent to the wrong page.
+    const apiAvailable = fetchState.status === 'success'
+
+    if (apiAvailable && plan?.planPurchaseLink) {
+      // Best case: direct checkout link for this exact plan duration
       window.open(plan.planPurchaseLink, '_blank', 'noopener,noreferrer')
-    } else if (program?.pricePageLink) {
+    } else if (apiAvailable && program?.pricePageLink) {
+      // Second choice: program-level pricing page from the API
       window.open(program.pricePageLink, '_blank', 'noopener,noreferrer')
     } else {
+      // Absolute last resort (API unavailable or no links returned): Technotron portal homepage
+      void service // service param retained for future per-service static URL lookup
       window.open('https://services.fortunekraftconsultancy.com', '_blank', 'noopener,noreferrer')
     }
   }

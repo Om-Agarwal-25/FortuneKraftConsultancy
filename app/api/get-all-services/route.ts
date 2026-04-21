@@ -67,6 +67,25 @@ export async function GET(): Promise<Response> {
       }, { status: 500 })
     }
 
+    // ── HTML guard: Technotron returns an HTML error page when the IP is not
+    //    whitelisted or the API credentials are invalid. Catch this early so
+    //    the server logs surface the real problem instead of a cryptic JSON
+    //    parse error.
+    const contentType = response.headers.get('content-type') ?? ''
+    if (contentType.includes('text/html')) {
+      console.error(
+        '\n⚠️  TECHNOTRON API RETURNED HTML INSTEAD OF JSON ⚠️\n' +
+        'Likely cause: IP not whitelisted, or invalid API credentials.\n' +
+        'Raw HTML response:\n',
+        rawText
+      )
+      return Response.json({
+        error: 'Technotron returned HTML instead of JSON — check IP whitelist and API credentials',
+        httpStatus: response.status,
+        rawPreview: rawText.substring(0, 300),
+      }, { status: 502 })
+    }
+
     let data: TechnotronApiResponse
     try {
       data = JSON.parse(rawText) as TechnotronApiResponse
