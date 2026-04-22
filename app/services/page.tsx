@@ -146,12 +146,15 @@ function ServicesContent(): JSX.Element {
   useEffect(() => {
     async function loadServices(): Promise<void> {
       try {
-        const res = await fetch('/api/get-all-services', { cache: 'no-store' })
+        const res = await fetch(`/api/get-all-services?bust=${Date.now()}`, { cache: 'no-store' })
         if (!res.ok) {
+          const errorData = await res.json() as { rawResponse?: string }
+          console.error("TECHNOTRON SERVER PROOF (Not OK):", errorData?.rawResponse)
           throw new Error('Backend returned an error state')
         }
-        const data = await res.json() as { programs: CleanProgram[], status?: boolean, success?: boolean }
+        const data = await res.json() as { programs: CleanProgram[], status?: boolean, success?: boolean, rawResponse?: string }
         if (!data || data.status === false || data.success === false) {
+          console.error("TECHNOTRON SERVER PROOF (Data Failure):", data?.rawResponse)
           throw new Error('API data fetch failed')
         }
         setFetchState({ status: 'success', programs: data.programs })
