@@ -48,7 +48,7 @@ export async function GET(): Promise<Response> {
       headers: {
         'Content-Type': 'application/json',
         'apiId': apiId,
-        'apiKey': "f8dFG78aifd77JGbsr$#sdH9dk"
+        'apiKey': apiKey
       },
       body: JSON.stringify({ scope: 'fetchAll' })
     });
