@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import type { TechnotronApiResponse } from '@/types/api'
 
+export const dynamic = 'force-dynamic';
+
 export interface CleanProgram {
   programId: string
   programName: string

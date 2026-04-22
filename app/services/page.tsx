@@ -146,7 +146,7 @@ function ServicesContent(): JSX.Element {
   useEffect(() => {
     async function loadServices(): Promise<void> {
       try {
-        const res = await fetch('/api/get-all-services')
+        const res = await fetch('/api/get-all-services', { cache: 'no-store' })
         if (!res.ok) {
           throw new Error('Backend returned an error state')
         }
