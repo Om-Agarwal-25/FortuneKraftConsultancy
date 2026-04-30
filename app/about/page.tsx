@@ -41,7 +41,7 @@ export default function AboutPage() {
             <ClientComps.SlideIn direction="left" className="relative w-full lg:w-[45%] flex-shrink-0">
               <div className="relative max-w-[380px] mx-auto rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/ritesh-agarwal.jpg"
+                  src="/Ritesh-Agarwal.jpeg"
                   alt="Ritesh Agarwal — Founder, Fortune Kraft Consultancy"
                   width={380}
                   height={440}

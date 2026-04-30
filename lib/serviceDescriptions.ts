@@ -263,7 +263,7 @@ export const serviceDescriptions: Record<string, ServiceDescription> = {
       'Long-term investors seeking consistent equity compounding',
       'Individuals who prefer research-backed fundamental investing',
       'Investors with 12–24 month outlook and patience for quality businesses',
-      'Those seeking an alternative to short-term speculative trading',
+      'Investors who focus on staying invested rather than timing the market',
     ],
     howRecommendationsWork: {
       title: 'Our Evaluation Process',
