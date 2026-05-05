@@ -55,13 +55,13 @@ export default function FaqsPage() {
               Contact Us
             </Link>
             <a
-              href="https://wa.me/919876543210"
+              href="https://t.me/fortunekraftconsultancy"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-8 py-4 bg-[#0A1628] hover:bg-[#11233F] text-white font-bold rounded-xl flex items-center justify-center gap-3 transition-all hover:scale-105 active:scale-95"
             >
               <MessageCircle className="w-5 h-5 text-gold" />
-              <span>WhatsApp Us</span>
+              <span>Telegram</span>
             </a>
           </div>
         </div>

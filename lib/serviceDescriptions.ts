@@ -61,7 +61,7 @@ export const serviceDescriptions: Record<string, ServiceDescription> = {
         description: 'Follow-up alerts are provided when important price levels are reached, including target achievement, trailing stop-loss adjustments, stop-loss triggers, and exit notifications. These updates help traders manage risk and lock profits effectively.',
       },
     ],
-    delivery: 'All recommendations are delivered instantly through Telegram / WhatsApp groups, ensuring subscribers never miss an opportunity.',
+    delivery: 'All recommendations are delivered instantly through Telegram groups, ensuring subscribers never miss an opportunity.',
     frequency: '1–2 trades per day',
     holdingPeriod: 'Same Day Exit',
     whoIsItFor: [
@@ -124,7 +124,7 @@ export const serviceDescriptions: Record<string, ServiceDescription> = {
         description: 'The position is carried overnight and exited the next day as per the suggested target or risk management level, aiming to capture gap-up openings or continuation moves.',
       },
     ],
-    delivery: 'All recommendations and updates are delivered in real time through WhatsApp / Telegram group with instant updates for trade activation or exit.',
+    delivery: 'All recommendations and updates are delivered in real time through Telegram group with instant updates for trade activation or exit.',
     frequency: '1 trade per day',
     holdingPeriod: 'Exit next day morning',
     whoIsItFor: [
@@ -192,7 +192,7 @@ export const serviceDescriptions: Record<string, ServiceDescription> = {
         description: 'Recommendations are generally provided in liquid stocks in the cash segment with strict stop-loss levels always defined to help protect capital.',
       },
     ],
-    delivery: 'All trade alerts and updates are delivered instantly through Telegram / WhatsApp groups ensuring subscribers receive recommendations quickly and can take action at the right time.',
+    delivery: 'All trade alerts and updates are delivered instantly through Telegram groups ensuring subscribers receive recommendations quickly and can take action at the right time.',
     frequency: '3–4 trades per month',
     holdingPeriod: 'Approximately 2 weeks',
     whoIsItFor: [
@@ -256,7 +256,7 @@ export const serviceDescriptions: Record<string, ServiceDescription> = {
         description: 'We seek to identify stocks where the current market price offers a meaningful margin of safety relative to intrinsic value, ensuring the risk-reward remains favourable.',
       },
     ],
-    delivery: 'Investment recommendations and quarterly portfolio updates are delivered through WhatsApp and email, ensuring you receive timely and actionable research directly.',
+    delivery: 'Investment recommendations and quarterly portfolio updates are delivered through Telegram and email, ensuring you receive timely and actionable research directly.',
     frequency: '1 stock/month',
     holdingPeriod: '12–24 months',
     whoIsItFor: [

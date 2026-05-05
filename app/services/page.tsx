@@ -249,7 +249,7 @@ function ServicesContent(): JSX.Element {
               <div className="flex flex-wrap gap-2 mt-auto">
                 <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">1–2 Trades/Day</span>
                 <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">Same Day Exit</span>
-                <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">WhatsApp Alerts</span>
+                <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">Telegram Alerts</span>
               </div>
             </motion.div>
 
@@ -274,7 +274,7 @@ function ServicesContent(): JSX.Element {
               <div className="flex flex-wrap gap-2 mt-auto">
                 <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">1 Trade/Day</span>
                 <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">Exit Next Morning</span>
-                <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">WhatsApp Alerts</span>
+                <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">Telegram Alerts</span>
               </div>
             </motion.div>
 
@@ -299,7 +299,7 @@ function ServicesContent(): JSX.Element {
               <div className="flex flex-wrap gap-2 mt-auto">
                 <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">3–4 Trades/Month</span>
                 <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">~2 Week Hold</span>
-                <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">WhatsApp Alerts</span>
+                <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">Telegram Alerts</span>
               </div>
             </motion.div>
 
@@ -324,7 +324,7 @@ function ServicesContent(): JSX.Element {
               <div className="flex flex-wrap gap-2 mt-auto">
                 <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">1 Trade/Month</span>
                 <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">25–35% Target</span>
-                <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">WhatsApp Alerts</span>
+                <span className="text-xs text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded">Telegram Alerts</span>
               </div>
             </motion.div>
           </div>

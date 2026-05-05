@@ -277,12 +277,12 @@ export default function ServiceModal({ service, mode, realPlan, realProgram, onC
                     </p>
                     <div className="flex gap-3 justify-center flex-wrap">
                       <a
-                        href="https://wa.me/917030151276"
+                        href="https://t.me/fortunekraftconsultancy"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="bg-gold text-navy font-bold px-6 py-3 rounded-full hover:bg-gold-light transition-colors"
                       >
-                        WhatsApp Us
+                        Telegram
                       </a>
                       <a
                         href="https://mail.google.com/mail/?view=cm&to=support@fortunekraftconsultancy.com"

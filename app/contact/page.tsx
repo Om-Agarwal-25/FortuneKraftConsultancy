@@ -76,9 +76,9 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  {/* WhatsApp */}
+                  {/* Telegram */}
                   <a
-                    href="https://wa.me/917030151276"
+                    href="https://t.me/fortunekraftconsultancy"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-start gap-5 group cursor-pointer transition-all hover:-translate-y-1"
@@ -88,7 +88,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-white/50 text-xs font-bold tracking-widest uppercase mb-1">
-                        WhatsApp
+                        Telegram
                       </p>
                       <p className="text-white font-bold text-lg group-hover:text-gold transition-colors">
                         +91 70301 51276

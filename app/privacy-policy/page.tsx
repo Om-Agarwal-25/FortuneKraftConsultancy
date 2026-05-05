@@ -36,7 +36,7 @@ export default function PrivacyPolicyPage() {
           <h3 className="font-display text-2xl text-[#0A1628] font-bold mb-4">1. Information We Collect</h3>
           <div className="w-20 h-1 bg-[#F0A500] mb-6" />
           <p className="text-[#23344E] text-[15px] leading-relaxed">
-            We may collect personal information such as your name, phone number, email address, and other contact details when you engage with our services, submit inquiries, fill out forms on our website, or communicate with us via email, WhatsApp, or social media.
+            We may collect personal information such as your name, phone number, email address, and other contact details when you engage with our services, submit inquiries, fill out forms on our website, or communicate with us via email, Telegram, or social media.
           </p>
         </div>
 
@@ -71,7 +71,7 @@ export default function PrivacyPolicyPage() {
           <h3 className="font-display text-2xl text-[#0A1628] font-bold mb-4">3. Communication Consent</h3>
           <div className="w-20 h-1 bg-[#F0A500] mb-6" />
           <p className="text-[#23344E] text-[15px] leading-relaxed">
-            By submitting an inquiry form or reaching out to us via any channel, you authorize us to contact you through phone calls, SMS, emails, and WhatsApp, even if your number is registered under the National Do Not Disturb (DND) registry.
+            By submitting an inquiry form or reaching out to us via any channel, you authorize us to contact you through phone calls, SMS, emails, and Telegram, even if your number is registered under the National Do Not Disturb (DND) registry.
           </p>
         </div>
 

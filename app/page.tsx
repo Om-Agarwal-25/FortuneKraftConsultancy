@@ -49,7 +49,7 @@ const WHY_CHOOSE_CARDS: WhyChooseCard[] = [
     icon: "Clock",
     title: "Real-Time Alerts",
     description:
-      "Get instant WhatsApp alerts the moment a trade opportunity is identified.",
+      "Get instant Telegram alerts the moment a trade opportunity is identified.",
   },
   {
     icon: "Users",
@@ -74,25 +74,22 @@ const WHY_CHOOSE_CARDS: WhyChooseCard[] = [
 
 const TESTIMONIALS: Testimonial[] = [
   {
-    quote:
-      "FortuneKraft has completely changed how I trade. Their risk management is top-notch, and the accuracy is exactly as advertised.",
-    name: "Rahul S.",
+    quote: "FortuneKraft has the best services for all types of traders! They provided structured research and well planned trades. I personally liked their BTST Service and Positional Service the most.",
+    name: "Bhairav Jain",
     designation: "Full-time Trader",
-    location: "Mumbai",
+    location: "Pune",
   },
   {
-    quote:
-      "The daily morning reports and exact entry/exit points give me the confidence to trade even with my busy corporate job.",
-    name: "Priya M.",
-    designation: "IT Professional",
-    location: "Bangalore",
+    quote: "I didn't understand trading well, FortuneKraft has helped me earn great returns with minimum risks, it has helped me understand perfect entry and exit strategies which has helped earn great results. The system followed here makes you aware of the risks and minimises it, the targets for the same are way higher. I would definitely recommend this platform for trading purposes.",
+    name: "Shrey Mehta",
+    designation: "Trader",
+    location: "Pune",
   },
   {
-    quote:
-      "I was skeptical at first, but the Demo plan proved their worth. Have been on the Market insights plan for 6 months now.",
-    name: "Amit K.",
+    quote: "Had an excellent experience with FortuneKraft Consultancy! Highly accurate trade recommendations delivered with disciplined risk management.",
+    name: "Viraj Oswal",
     designation: "Business Owner",
-    location: "Delhi",
+    location: "Pune",
   },
 ];
 
@@ -318,7 +315,7 @@ export default function Home(): JSX.Element {
                 {
                   step: "03",
                   title: "Receive Alerts",
-                  desc: "Get clear Entry, Target, and Stop-Loss alerts via WhatsApp/SMS.",
+                  desc: "Get clear Entry, Target, and Stop-Loss alerts via Telegram/SMS.",
                 },
                 {
                   step: "04",
@@ -368,31 +365,31 @@ export default function Home(): JSX.Element {
               The trust of our active traders fuels our commitment.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
             {TESTIMONIALS.map((t, i) => (
               <div
                 key={i}
-                className="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative"
+                className="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative flex flex-col h-full"
               >
+
+                {/* Stars */}
                 <div className="flex text-gold mb-6 relative z-10">
                   {[...Array(5)].map((_, idx) => (
-                    <svg
-                      key={idx}
-                      className="w-5 h-5 fill-current"
-                      viewBox="0 0 20 20"
-                    >
+                    <svg key={idx} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
-                <p className="text-navy/80 italic mb-8 relative z-10 text-[15px] leading-relaxed">
+
+                {/* Quote text — flex-grow pushes name to bottom */}
+                <p className="text-navy/80 italic mb-8 relative z-10 text-[15px] leading-relaxed flex-grow">
                   &quot;{t.quote}&quot;
                 </p>
-                <div className="border-t border-gray-100 pt-4">
+
+                {/* Name and designation — always at bottom */}
+                <div className="border-t border-gray-100 pt-4 mt-auto">
                   <h4 className="text-navy font-bold">{t.name}</h4>
-                  <p className="text-sm text-gray-500">
-                    {t.designation}, {t.location}
-                  </p>
+                  <p className="text-sm text-gray-500">{t.designation}, {t.location}</p>
                 </div>
               </div>
             ))}

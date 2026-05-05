@@ -17,7 +17,7 @@ export const faqs: FaqItem[] = [
     id: 'faq-3',
     category: 'How It Works',
     question: 'How will I receive the trade calls?',
-    answer: 'Trade alerts and recommendations are sent directly via SMS and WhatsApp in real-time, ensuring you never miss a market opportunity. Important research reports are also emailed to you.',
+    answer: 'Trade alerts and recommendations are sent directly via Telegram in real-time, ensuring you never miss a market opportunity. Important research reports are also emailed to you.',
   },
   {
     id: 'faq-4',
@@ -35,6 +35,6 @@ export const faqs: FaqItem[] = [
     id: 'faq-6',
     category: 'Technical Support',
     question: 'How can I get technical support during market hours?',
-    answer: 'Our dedicated support team is available via WhatsApp and phone call from Monday to Saturday, 9:00 AM to 6:00 PM IST. We ensure all client queries are addressed promptly, especially during live market hours.',
+    answer: 'Our dedicated support team is available via Telegram and phone call from Monday to Saturday, 9:00 AM to 6:00 PM IST. We ensure all client queries are addressed promptly, especially during live market hours.',
   },
 ]
