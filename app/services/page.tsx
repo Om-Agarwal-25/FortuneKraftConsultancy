@@ -32,7 +32,7 @@ const SERVICE_MAP: Record<string, { programName: string; duration: string; isDem
   'positional-alpha-3m': { programName: 'Positional Alpha', duration: '3 months', isDemo: false },
   'positional-alpha-1y': { programName: 'Positional Alpha', duration: '12 months', isDemo: false },
   'positional-alpha-demo': { programName: 'Positional Alpha', duration: '7 days', isDemo: true },
-  'free-demo-service': { programName: 'Free Demo Service', duration: '2 days', isDemo: true },
+  'free-demo-service': { programName: 'Free Demo Service', duration: '30 days', isDemo: false },
   // Capital Compounders — not yet on Technotron API; falls back to hardcoded prices gracefully
   'capital-compounders-1m': { programName: 'Capital Compounders', duration: '30 days', isDemo: false },
   'capital-compounders-3m': { programName: 'Capital Compounders', duration: '3 months', isDemo: false },

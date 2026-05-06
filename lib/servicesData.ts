@@ -218,13 +218,13 @@ export const services: Service[] = [
   {
     id: 'free-demo-service',
     title: 'Free Demo Service',
-    category: 'Trial Plans',
-    duration: '2 Days',
-    price: '₹118',
+    category: 'Demo',
+    duration: '30 Days',
+    price: '₹99',
     tag: 'Free Trial',
     targetAudience: 'Trader',
     isTrial: true,
-    description: 'Experience our research quality with a 2-day demo at a minimal cost. No commitment required.',
+    description: 'Experience Fortune Kraft before you invest. Get 30 days of live calls at a minimal cost with no commitment required.',
     features: ['Live trade alerts', 'Telegram alerts', 'Entry, target & stop-loss', 'No commitment'],
   },
 
