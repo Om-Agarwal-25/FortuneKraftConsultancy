@@ -11,7 +11,7 @@ import type { Variants, MotionValue } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn } from "lucide-react";
 import type { NavLink } from "@/types";
 
 const NAV_LINKS: NavLink[] = [
@@ -162,8 +162,9 @@ export default function Navbar(): JSX.Element {
             href="https://services.fortunekraftconsultancy.com/login"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white/80 hover:text-gold transition-colors duration-200 text-[15px] font-medium"
+            className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-full border border-gold/60 text-gold text-[14px] font-semibold tracking-wide hover:bg-gold/10 transition-all duration-200"
           >
+            <LogIn size={15} />
             Login
           </a>
 
@@ -223,8 +224,9 @@ export default function Navbar(): JSX.Element {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-white/80 hover:text-gold transition-colors duration-200 text-xl font-medium flex items-center justify-center py-3"
+                className="flex items-center gap-2 text-gold text-xl font-medium border border-gold/40 px-6 py-3 rounded-full w-fit"
               >
+                <LogIn size={18} />
                 Login
               </a>
             </motion.div>
