@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, Suspense, useMemo } from 'react'
+import { useState, useEffect, useRef, Suspense, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSearchParams } from 'next/navigation'
 import type { Service } from '@/types'
@@ -84,6 +84,7 @@ function ServicesContent(): JSX.Element {
   const [activeCategory, setActiveCategory] = useState<ServiceCategory>('All')
   const [selectedService, setSelectedService] = useState<Service | null>(null)
   const [fetchState, setFetchState] = useState<FetchState>({ status: 'loading' })
+  const cardsRef = useRef<HTMLDivElement>(null)
 
   // Derive available sub-categories from the active audience tab
   const availableCategories = useMemo<ServiceCategory[]>(() => {
@@ -181,6 +182,17 @@ function ServicesContent(): JSX.Element {
     setSelectedService(service)
   }
 
+  function handleCategoryChange(category: ServiceCategory): void {
+    setActiveCategory(category)
+    setTimeout(() => {
+      if (cardsRef.current) {
+        const navbarHeight = 200
+        const elementTop = cardsRef.current.getBoundingClientRect().top + window.scrollY - navbarHeight
+        window.scrollTo({ top: elementTop, behavior: 'smooth' })
+      }
+    }, 50)
+  }
+
   function handleBuy(service: Service, plan: CleanPlan | null, program: CleanProgram | null): void {
     // Only trust API-sourced links when the fetch actually succeeded.
     // If the API failed or is still loading, fall through to the hardcoded fallback
@@ -236,7 +248,7 @@ function ServicesContent(): JSX.Element {
               viewport={{ once: true }}
               whileHover={{ scale: 1.02 }}
               className="bg-[#0A1628] rounded-2xl p-8 border-t-[4px] border-t-gold shadow-lg flex flex-col cursor-pointer"
-              onClick={() => { setActiveAudience('Trader'); setActiveCategory('Intraday Alpha') }}
+              onClick={() => { setActiveAudience('Trader'); handleCategoryChange('Intraday Alpha') }}
             >
               <div className="flex justify-between items-start mb-6">
                 <Zap size={40} className="text-gold" />
@@ -261,7 +273,7 @@ function ServicesContent(): JSX.Element {
               transition={{ delay: 0.1 }}
               whileHover={{ scale: 1.02 }}
               className="bg-[#0A1628] rounded-2xl p-8 border-t-[4px] border-t-gold shadow-lg flex flex-col cursor-pointer"
-              onClick={() => { setActiveAudience('Trader'); setActiveCategory('BTST Alpha') }}
+              onClick={() => { setActiveAudience('Trader'); handleCategoryChange('BTST Alpha') }}
             >
               <div className="flex justify-between items-start mb-6">
                 <Moon size={40} className="text-gold" />
@@ -286,7 +298,7 @@ function ServicesContent(): JSX.Element {
               transition={{ delay: 0.2 }}
               whileHover={{ scale: 1.02 }}
               className="bg-[#0A1628] rounded-2xl p-8 border-t-[4px] border-t-gold shadow-lg flex flex-col cursor-pointer"
-              onClick={() => { setActiveAudience('Trader'); setActiveCategory('Positional Alpha') }}
+              onClick={() => { setActiveAudience('Trader'); handleCategoryChange('Positional Alpha') }}
             >
               <div className="flex justify-between items-start mb-6">
                 <TrendingUp size={40} className="text-gold" />
@@ -311,7 +323,7 @@ function ServicesContent(): JSX.Element {
               transition={{ delay: 0.3 }}
               whileHover={{ scale: 1.02 }}
               className="bg-[#0A1628] rounded-2xl p-8 border-t-[4px] border-t-gold shadow-lg flex flex-col cursor-pointer"
-              onClick={() => { setActiveAudience('Investor'); setActiveCategory('Capital Compounders') }}
+              onClick={() => { setActiveAudience('Investor'); handleCategoryChange('Capital Compounders') }}
             >
               <div className="flex justify-between items-start mb-6">
                 <BarChart2 size={40} className="text-gold" />
@@ -374,10 +386,9 @@ function ServicesContent(): JSX.Element {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.15 }}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`relative px-5 py-2 rounded-full text-sm font-semibold transition-colors flex-shrink-0 ${
-                    activeCategory === cat ? 'text-navy' : 'text-gray-500 hover:text-navy hover:bg-gray-100'
-                  }`}
+                  onClick={() => handleCategoryChange(cat)}
+                  className={`relative px-5 py-2 rounded-full text-sm font-semibold transition-colors flex-shrink-0 ${activeCategory === cat ? 'text-navy' : 'text-gray-500 hover:text-navy hover:bg-gray-100'
+                    }`}
                 >
                   {activeCategory === cat && (
                     <motion.div
@@ -395,7 +406,7 @@ function ServicesContent(): JSX.Element {
       </div>
 
       {/* ── Service Cards Grid ── */}
-      <div id="services-grid" className="container mx-auto px-6 pt-12">
+      <div ref={cardsRef} id="services-grid" className="container mx-auto px-6 pt-12">
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
             {/* Live-priced cards */}

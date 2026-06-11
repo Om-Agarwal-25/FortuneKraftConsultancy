@@ -155,8 +155,19 @@ export default function Navbar(): JSX.Element {
           })}
         </nav>
 
-        {/* Right — CTA Button (always present to balance flex layout) */}
-        <div className="flex-1 hidden lg:flex justify-end">
+        {/* Right — Login + CTA Buttons */}
+        <div className="flex-1 hidden lg:flex items-center justify-end gap-5">
+          {/* Login button */}
+          <a
+            href="https://services.fortunekraftconsultancy.com/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/80 hover:text-gold transition-colors duration-200 text-[15px] font-medium"
+          >
+            Login
+          </a>
+
+          {/* Get Started button — existing, unchanged */}
           {!isServicesPage && (
             <Link href="/services">
               <motion.span
@@ -205,8 +216,21 @@ export default function Navbar(): JSX.Element {
                 </motion.div>
               ))}
             </div>
+            {/* Mobile Login link */}
+            <motion.div variants={MOBILE_LINK_VARIANTS} className="mt-8">
+              <a
+                href="https://services.fortunekraftconsultancy.com/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-white/80 hover:text-gold transition-colors duration-200 text-xl font-medium flex items-center justify-center py-3"
+              >
+                Login
+              </a>
+            </motion.div>
+
             {!isServicesPage && (
-              <motion.div variants={MOBILE_LINK_VARIANTS} className="mt-12">
+              <motion.div variants={MOBILE_LINK_VARIANTS} className="mt-2">
                 <Link
                   href="/services"
                   onClick={closeMenu}
