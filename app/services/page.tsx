@@ -32,7 +32,7 @@ const SERVICE_MAP: Record<string, { programName: string; duration: string; isDem
   'positional-alpha-3m': { programName: 'Positional Alpha', duration: '3 months', isDemo: false },
   'positional-alpha-1y': { programName: 'Positional Alpha', duration: '12 months', isDemo: false },
   'positional-alpha-demo': { programName: 'Positional Alpha', duration: '7 days', isDemo: true },
-  'free-demo-service': { programName: 'Free Demo Service', duration: '30 days', isDemo: false },
+  'free-demo-service': { programName: 'FREE SERVICE TRIAL', duration: '30 days', isDemo: false },
   // Capital Compounders — not yet on Technotron API; falls back to hardcoded prices gracefully
   'capital-compounders-1m': { programName: 'Capital Compounders', duration: '30 days', isDemo: false },
   'capital-compounders-3m': { programName: 'Capital Compounders', duration: '3 months', isDemo: false },
@@ -46,8 +46,18 @@ function getPlanForService(
   const mapping = SERVICE_MAP[serviceId]
   if (!mapping) return { plan: null, program: null }
 
+  // Debug: log all program names from API for free-demo-service
+  if (serviceId === 'free-demo-service') {
+    console.log('All programs from API:', programs.map(p => p.programName))
+    console.log('Looking for:', mapping.programName)
+  }
+
+  // Try exact match first, then partial match (handles name mismatches with Technotron)
   const program = programs.find(
     (p) => p.programName.toLowerCase() === mapping.programName.toLowerCase()
+  ) ?? programs.find(
+    (p) => p.programName.toLowerCase().includes(mapping.programName.toLowerCase().split(' ')[0] ?? '')
+      || mapping.programName.toLowerCase().includes(p.programName.toLowerCase().split(' ')[0] ?? '')
   ) ?? null
 
   if (!program) return { plan: null, program: null }

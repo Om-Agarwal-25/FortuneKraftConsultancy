@@ -278,4 +278,64 @@ export const serviceDescriptions: Record<string, ServiceDescription> = {
     importantNote: 'Capital Compounders is a long-term investment research service. Returns are not guaranteed and depend on individual market conditions. Investors should have a 12–24 month horizon and be comfortable with equity market volatility.',
     riskNote: 'Investments in securities market are subject to market risks. Read all related documents carefully before investing. Past performance is not indicative of future results. Please invest based on your own risk appetite and financial goals.',
   },
+
+  'Free Demo Service': {
+    id: 'free-demo-service',
+    title: 'Free Demo Service',
+    tagline: 'Experience FortuneKraft Before You Invest',
+    overview: 'The Free Demo Service is a trial offering from FortuneKraft Consultancy that allows potential clients to experience our research service at a minimal cost before committing to a full plan. Get real live trade calls, Telegram alerts, and full entry/exit guidance — exactly as our premium subscribers receive — for 30 days at a fraction of the cost.',
+    whyChoose: [
+      {
+        title: 'Zero Risk Trial',
+        description: 'Experience the quality of our research calls before committing to a full subscription. No long-term obligation required.',
+      },
+      {
+        title: 'Real Live Calls',
+        description: 'You receive the same real trade calls that our premium subscribers get — not simulated or delayed signals.',
+      },
+      {
+        title: 'Full 30 Days Access',
+        description: 'Unlike other trials that last only a few days, our demo service gives you a full 30 days to evaluate our research quality.',
+      },
+    ],
+    keyHighlights: [
+      {
+        title: 'Live Trade Alerts',
+        description: 'Receive actual trade recommendations with entry price, target, and stop-loss levels delivered via Telegram.',
+      },
+      {
+        title: '30 Day Duration',
+        description: 'A full month of access to evaluate our research service at a minimal cost before deciding on a premium plan.',
+      },
+      {
+        title: 'No Commitment',
+        description: 'Try the service with no obligation to continue. Cancel anytime before the trial ends.',
+      },
+      {
+        title: 'Covers All Services',
+        description: 'The trial pack covers Intraday Alpha, BTST Alpha, and Positional Alpha — giving you a complete picture of all our research services.',
+      },
+    ],
+    delivery: 'All trade alerts are delivered instantly via Telegram, ensuring you never miss a research recommendation during your trial period.',
+    frequency: 'Same as premium plans',
+    holdingPeriod: '30 Days Trial',
+    whoIsItFor: [
+      'First-time investors evaluating research services',
+      'Traders who want to test research quality before subscribing',
+      'Anyone curious about FortuneKraft\'s research methodology',
+      'Investors who prefer to verify before committing',
+    ],
+    howRecommendationsWork: {
+      title: 'What You Receive',
+      points: [
+        'Live trade recommendations via Telegram',
+        'Entry price level',
+        'Target price level',
+        'Stop-loss level',
+        'Trade updates and exit notifications',
+      ],
+    },
+    importantNote: 'The Free Demo Service is a trial at a minimal cost. All recommendations during the trial are real research-based calls. Investment in securities market are subject to market risks.',
+    riskNote: 'Investment in securities market are subject to market risks. Read all related documents carefully before investing. Past performance is not indicative of future results.',
+  },
 }

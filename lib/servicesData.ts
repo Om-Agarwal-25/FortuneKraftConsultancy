@@ -220,11 +220,11 @@ export const services: Service[] = [
     title: 'Free Demo Service',
     category: 'Demo',
     duration: '30 Days',
-    price: '₹99',
+    price: '₹116',
     tag: 'Free Trial',
     targetAudience: 'Trader',
     isTrial: true,
-    description: 'Experience Fortune Kraft before you invest. Get 30 days of live calls at a minimal cost with no commitment required.',
+    description: 'Experience FortuneKraft research service for 30 days at a minimal cost. Covers Intraday Alpha, BTST Alpha and Positional Alpha.',
     features: ['Live trade alerts', 'Telegram alerts', 'Entry, target & stop-loss', 'No commitment'],
   },
 
