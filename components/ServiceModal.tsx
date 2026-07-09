@@ -30,6 +30,9 @@ export default function ServiceModal({ service, mode, realPlan, realProgram, onC
   const familyName = service.title.split(' — ')[0] ?? ''
   const desc = serviceDescriptions[familyName]
 
+  // Orange subheader: prefer live API program name, fall back to familyName
+  const modalHeaderName = realProgram?.programName ?? familyName
+
   // Only fetch API for buy mode
   useEffect(() => {
     if (mode !== 'buy') return
@@ -109,7 +112,7 @@ export default function ServiceModal({ service, mode, realPlan, realProgram, onC
           <div className="bg-navy sticky top-0 z-10 px-6 py-5 flex items-start justify-between rounded-t-2xl">
             <div>
               <p className="text-gold text-xs font-semibold uppercase tracking-widest mb-1">
-                {familyName}
+                {modalHeaderName}
               </p>
               <h2 className="font-display text-white text-2xl font-bold">
                 {mode === 'description' ? 'Service Overview' : 'Subscribe to ' + service.title}
@@ -339,8 +342,8 @@ export default function ServiceModal({ service, mode, realPlan, realProgram, onC
                               key={plan.planId}
                               onClick={() => setSelectedPlan(plan)}
                               className={`relative p-4 rounded-xl border-2 text-left transition-all ${isSelected
-                                  ? 'border-gold bg-gold/10'
-                                  : 'border-[#0A1628]/10 bg-[#F8F9FA] hover:border-gold/50'
+                                ? 'border-gold bg-gold/10'
+                                : 'border-[#0A1628]/10 bg-[#F8F9FA] hover:border-gold/50'
                                 }`}
                             >
                               {plan.trialPack && (

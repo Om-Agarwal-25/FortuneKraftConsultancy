@@ -473,15 +473,20 @@ function ServicesContent(): JSX.Element {
       </div>
 
       {/* ── Modal ── */}
-      {selectedService && (
-        <ServiceModal
-          service={selectedService}
-          mode="description"
-          realPlan={null}
-          realProgram={null}
-          onClose={closeModal}
-        />
-      )}
+      {/* ── Modal ── */}
+      {selectedService && (() => {
+        const programs = fetchState.status === 'success' ? fetchState.programs : []
+        const { plan, program } = getPlanForService(selectedService.id, programs)
+        return (
+          <ServiceModal
+            service={selectedService}
+            mode="description"
+            realPlan={plan}
+            realProgram={program}
+            onClose={closeModal}
+          />
+        )
+      })()}
     </div>
   )
 }
