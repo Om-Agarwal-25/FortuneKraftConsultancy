@@ -189,7 +189,7 @@ export const services: Service[] = [
     targetAudience: 'Trader',
     isTrial: true,
     description: 'Try Intraday Alpha for 7 days at a minimal cost before committing to a full plan.',
-    features: ['1–2 intraday trades', 'Telegram alerts', 'Entry, target & stop-loss', 'No commitment'],
+    features: ['1–2 intraday trades', 'App & Telegram alerts', 'Entry, target & stop-loss', 'No commitment'],
   },
   {
     id: 'btst-alpha-demo',
@@ -201,7 +201,7 @@ export const services: Service[] = [
     targetAudience: 'Trader',
     isTrial: true,
     description: 'Try BTST Alpha for 7 days at a minimal cost before committing to a full plan.',
-    features: ['1 BTST trade', 'Telegram alerts', 'Entry, target & stop-loss', 'No commitment'],
+    features: ['1 BTST trade', 'App & Telegram alerts', 'Entry, target & stop-loss', 'No commitment'],
   },
   {
     id: 'positional-alpha-demo',
@@ -213,7 +213,7 @@ export const services: Service[] = [
     targetAudience: 'Trader',
     isTrial: true,
     description: 'Try Positional Alpha for 7 days at a minimal cost before committing to a full plan.',
-    features: ['1–2 positional trades', 'Telegram alerts', 'Entry, target & stop-loss', 'No commitment'],
+    features: ['1–2 positional trades', 'App & Telegram alerts', 'Entry, target & stop-loss', 'No commitment'],
   },
   {
     id: 'free-demo-service',
@@ -225,7 +225,7 @@ export const services: Service[] = [
     targetAudience: 'Trader',
     isTrial: true,
     description: 'Experience FortuneKraft research service for 30 days at a minimal cost. Covers Intraday Alpha, BTST Alpha and Positional Alpha.',
-    features: ['Live trade alerts', 'Telegram alerts', 'Entry, target & stop-loss', 'No commitment'],
+    features: ['Live trade alerts', 'App & Telegram alerts', 'Entry, target & stop-loss', 'No commitment'],
   },
 
   // CAPITAL COMPOUNDERS — INVESTOR SERVICE

@@ -236,7 +236,7 @@ export default function AboutPage() {
               />
               <ClientComps.CheckFeature
                 title="Real-Time Delivery"
-                description="Trade alerts reach you via Telegram within seconds of our analysts identifying an opportunity — never a delayed call."
+                description="Trade alerts reach you via Telegram and our App within seconds of our analysts identifying an opportunity — never a delayed call."
               />
               <ClientComps.CheckFeature
                 title="Transparent Track Record"

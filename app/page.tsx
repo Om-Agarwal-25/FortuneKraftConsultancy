@@ -49,7 +49,7 @@ const WHY_CHOOSE_CARDS: WhyChooseCard[] = [
     icon: "Clock",
     title: "Real-Time Alerts",
     description:
-      "Get instant Telegram alerts the moment a trade opportunity is identified.",
+      "Get instant alerts through Telegram and our App the moment a trade opportunity is identified.",
   },
   {
     icon: "Users",
@@ -315,7 +315,7 @@ export default function Home(): JSX.Element {
                 {
                   step: "03",
                   title: "Receive Alerts",
-                  desc: "Get clear Entry, Target, and Stop-Loss alerts via Telegram/SMS.",
+                  desc: "Get clear Entry, Target, and Stop-Loss alerts via Telegram/App.",
                 },
                 {
                   step: "04",
