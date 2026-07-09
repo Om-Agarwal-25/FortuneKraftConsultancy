@@ -142,7 +142,9 @@ export default function ServiceModal({ service, mode, realPlan, realProgram, onC
                     <p className="text-gray-500 text-xs mt-1">Trades</p>
                   </div>
                   <div className="bg-[#F8F9FA] rounded-xl p-4 text-center border border-[#0A1628]/10">
-                    <p className="text-navy font-bold text-xl font-display">{desc.holdingPeriod}</p>
+                    <p className="text-navy font-bold text-xl font-display">
+                      {realPlan?.displayDuration ?? desc.holdingPeriod}
+                    </p>
                     <p className="text-gray-500 text-xs mt-1">Holding Period</p>
                   </div>
                   <div className="bg-[#F8F9FA] rounded-xl p-4 text-center border border-[#0A1628]/10">
@@ -157,7 +159,9 @@ export default function ServiceModal({ service, mode, realPlan, realProgram, onC
                     <Info size={18} className="text-gold" /> Service Overview
                   </h3>
                   <div className="w-12 h-0.5 bg-gold rounded mb-4" />
-                  <p className="text-[#23344E] text-[15px] leading-relaxed">{desc.overview}</p>
+                  <p className="text-[#23344E] text-[15px] leading-relaxed">
+                    {realProgram?.programShortDetails ?? desc.overview}
+                  </p>
                 </div>
 
                 {/* Why Choose */}
@@ -315,11 +319,11 @@ export default function ServiceModal({ service, mode, realPlan, realProgram, onC
                         {buyState.program.pricing.map((plan) => {
                           const isSelected = selectedPlan?.planId === plan.planId
                           const isGstApplied = 'gstApplied' in plan ? plan.gstApplied : plan.gstToBeApplied
-                          const finalPrice = Number('finalPrice' in plan 
-                            ? plan.finalPrice 
-                            : (isGstApplied 
-                                ? Math.round(plan.discountedPrice * (1 + plan.gstPercentage / 100))
-                                : plan.discountedPrice))
+                          const finalPrice = Number('finalPrice' in plan
+                            ? plan.finalPrice
+                            : (isGstApplied
+                              ? Math.round(plan.discountedPrice * (1 + plan.gstPercentage / 100))
+                              : plan.discountedPrice))
                           const originalPrice = isGstApplied
                             ? Math.round(plan.actualPrice * (1 + plan.gstPercentage / 100))
                             : plan.actualPrice
@@ -327,18 +331,17 @@ export default function ServiceModal({ service, mode, realPlan, realProgram, onC
                           const discountPct = Number('discountPercent' in plan
                             ? plan.discountPercent
                             : (hasDiscount
-                                ? Math.round(((plan.actualPrice - plan.discountedPrice) / plan.actualPrice) * 100)
-                                : 0))
+                              ? Math.round(((plan.actualPrice - plan.discountedPrice) / plan.actualPrice) * 100)
+                              : 0))
 
                           return (
                             <button
                               key={plan.planId}
                               onClick={() => setSelectedPlan(plan)}
-                              className={`relative p-4 rounded-xl border-2 text-left transition-all ${
-                                isSelected
+                              className={`relative p-4 rounded-xl border-2 text-left transition-all ${isSelected
                                   ? 'border-gold bg-gold/10'
                                   : 'border-[#0A1628]/10 bg-[#F8F9FA] hover:border-gold/50'
-                              }`}
+                                }`}
                             >
                               {plan.trialPack && (
                                 <span className="absolute top-2 right-2 text-xs bg-green-100 text-green-700 font-semibold px-2 py-0.5 rounded-full">
@@ -375,14 +378,14 @@ export default function ServiceModal({ service, mode, realPlan, realProgram, onC
                           <div>
                             <p className="text-white/60 text-sm">{selectedPlan.displayDuration} Plan</p>
                             <p className="text-gold font-bold text-2xl font-display">
-                              ₹{Number('finalPrice' in selectedPlan 
-                                ? selectedPlan.finalPrice 
+                              ₹{Number('finalPrice' in selectedPlan
+                                ? selectedPlan.finalPrice
                                 : (
                                   ('gstApplied' in selectedPlan ? selectedPlan.gstApplied : selectedPlan.gstToBeApplied)
                                     ? Math.round(selectedPlan.discountedPrice * (1 + selectedPlan.gstPercentage / 100))
                                     : selectedPlan.discountedPrice
-                                  )
-                                ).toLocaleString('en-IN')}
+                                )
+                              ).toLocaleString('en-IN')}
                             </p>
                             {Boolean('gstApplied' in selectedPlan ? selectedPlan.gstApplied : selectedPlan.gstToBeApplied) && (
                               <p className="text-white/40 text-xs">Inclusive of {selectedPlan.gstPercentage}% GST</p>
