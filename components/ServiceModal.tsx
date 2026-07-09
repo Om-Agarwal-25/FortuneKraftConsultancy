@@ -114,7 +114,11 @@ export default function ServiceModal({ service, mode, realPlan, realProgram, onC
               <h2 className="font-display text-white text-2xl font-bold">
                 {mode === 'description' ? 'Service Overview' : 'Subscribe to ' + service.title}
               </h2>
-              <p className="text-white/60 text-sm mt-1">{service.duration} Plan — {service.price}</p>
+              <p className="text-white/60 text-sm mt-1">
+                {realPlan ? realPlan.displayDuration : service.duration} Plan
+                {' — '}
+                {realPlan ? `₹${realPlan.finalPrice.toLocaleString('en-IN')}` : service.price}
+              </p>
             </div>
             <button
               onClick={onClose}

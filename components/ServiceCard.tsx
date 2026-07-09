@@ -18,10 +18,21 @@ interface ServiceCardProps {
 export default function ServiceCard({
   service,
   realPlan,
+  realProgram,
   isLoadingPrices,
   onDescriptionClick,
   onBuyClick,
 }: ServiceCardProps): JSX.Element {
+  // Prefer live API data when available, fall back to static servicesData
+  const displayName    = realProgram?.programName ?? service.title.split(' — ')[0]
+  const displayTitle   = realProgram?.programName ?? service.title
+  const displayDuration = realPlan?.displayDuration ?? service.duration
+  const displayDesc    = realProgram?.programShortDetails ?? null
+
+  // True displayed discount: MRP (actualPrice) vs GST-inclusive final price
+  const computedDiscountPct = (realPlan && realPlan.actualPrice > realPlan.finalPrice)
+    ? Math.round(((realPlan.actualPrice - realPlan.finalPrice) / realPlan.actualPrice) * 100)
+    : 0
   return (
     <motion.div
       whileHover={{ y: -6 }}
@@ -51,12 +62,12 @@ export default function ServiceCard({
           </div>
         )}
         <div className="inline-block bg-gold px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-navy mb-4">
-          {service.title.split(' — ')[0]}
+          {displayName}
         </div>
         <h3 className="text-white font-display text-2xl font-bold mb-1 mr-8">
-          {service.title}
+          {displayTitle}
         </h3>
-        <p className="text-gold/80 text-sm">{service.duration}</p>
+        <p className="text-gold/80 text-sm">{displayDuration}</p>
       </div>
 
       {/* Body section */}
@@ -71,7 +82,7 @@ export default function ServiceCard({
                 <span className="font-display text-3xl text-navy font-bold">
                   ₹{realPlan.finalPrice.toLocaleString('en-IN')}
                 </span>
-                {realPlan.discountPercent > 0 && (
+                {realPlan.actualPrice > realPlan.finalPrice && (
                   <span className="text-sm text-gray-400 line-through">
                     ₹{realPlan.actualPrice.toLocaleString('en-IN')}
                   </span>
@@ -80,9 +91,9 @@ export default function ServiceCard({
               {realPlan.gstApplied && (
                 <p className="text-gray-400 text-xs mt-0.5">Incl. {realPlan.gstPercentage}% GST</p>
               )}
-              {realPlan.discountPercent > 0 && (
+              {computedDiscountPct > 0 && (
                 <span className="text-xs bg-gold/20 text-gold-dark font-semibold px-2 py-0.5 rounded-full inline-block mt-2">
-                  {realPlan.discountPercent}% OFF
+                  {computedDiscountPct}% OFF
                 </span>
               )}
             </div>
@@ -90,6 +101,11 @@ export default function ServiceCard({
             <span className="font-display text-3xl text-navy font-bold">{service.price}</span>
           )}
         </div>
+
+        {/* API description when available */}
+        {displayDesc && (
+          <p className="text-navy/60 text-xs leading-relaxed mb-4 -mt-2">{displayDesc}</p>
+        )}
 
         <ul className="space-y-3 mb-8 flex-grow">
           {service.features.map((feature, idx) => (
