@@ -24,10 +24,9 @@ export default function ServiceCard({
   onBuyClick,
 }: ServiceCardProps): JSX.Element {
   // Prefer live API data when available, fall back to static servicesData
-  const displayName    = realProgram?.programName ?? service.title.split(' — ')[0]
-  const displayTitle   = realProgram?.programName ?? service.title
+  const displayName = realProgram?.programName ?? service.title.split(' — ')[0]
+  const displayTitle = realProgram?.programName ?? service.title
   const displayDuration = realPlan?.displayDuration ?? service.duration
-  const displayDesc    = realProgram?.programShortDetails ?? null
 
   // True displayed discount: MRP (actualPrice) vs GST-inclusive final price
   const computedDiscountPct = (realPlan && realPlan.actualPrice > realPlan.finalPrice)
@@ -103,10 +102,6 @@ export default function ServiceCard({
         </div>
 
         {/* API description when available */}
-        {displayDesc && (
-          <p className="text-navy/60 text-xs leading-relaxed mb-4 -mt-2">{displayDesc}</p>
-        )}
-
         <ul className="space-y-3 mb-8 flex-grow">
           {service.features.map((feature, idx) => (
             <li key={idx} className="flex gap-3 text-sm text-navy/80">
