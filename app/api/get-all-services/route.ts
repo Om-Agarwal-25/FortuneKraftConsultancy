@@ -89,7 +89,7 @@ export async function GET(): Promise<Response> {
           .sort((a, b) => a.planIdOrder - b.planIdOrder)
           .map((plan) => {
             const finalPrice = plan.gstToBeApplied
-              ? Math.round(plan.discountedPrice * (1 + plan.gstPercentage / 100))
+              ? Math.floor(plan.discountedPrice * (1 + plan.gstPercentage / 100))
               : plan.discountedPrice
             const discountPercent = plan.actualPrice > plan.discountedPrice
               ? Math.round(((plan.actualPrice - plan.discountedPrice) / plan.actualPrice) * 100)

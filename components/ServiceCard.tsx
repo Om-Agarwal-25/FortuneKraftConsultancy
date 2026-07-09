@@ -73,10 +73,7 @@ export default function ServiceCard({
                 </span>
                 {realPlan.discountPercent > 0 && (
                   <span className="text-sm text-gray-400 line-through">
-                    ₹{(realPlan.gstApplied
-                      ? Math.round(realPlan.actualPrice * (1 + realPlan.gstPercentage / 100))
-                      : realPlan.actualPrice
-                    ).toLocaleString('en-IN')}
+                    ₹{realPlan.actualPrice.toLocaleString('en-IN')}
                   </span>
                 )}
               </div>
