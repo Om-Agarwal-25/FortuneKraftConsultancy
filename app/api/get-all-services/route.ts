@@ -66,6 +66,47 @@ export async function GET(): Promise<Response> {
       );
     }
 
+    if (process.env.DEBUG_TECHNOTRON === "1" && data.status) {
+      // TEMP-DEBUG-PREMIUM: remove after diagnosing
+      const premium = data.data.find((p) => /premium/i.test(p.programName));
+      console.log(
+        "PREMIUM DEBUG",
+        JSON.stringify(
+          premium?.pricing?.map((p) => ({
+            planId: p.planId,
+            planIdOrder: p.planIdOrder,
+            displayDuration: p.displayDuration,
+            trialPack: p.trialPack,
+            publishToWebsite: p.publishToWebsite,
+            planPurchaseLink: p.planPurchaseLink,
+          })),
+          null,
+          2,
+        ),
+      );
+
+      const btst = data.data.find((p) => /btst alpha/i.test(p.programName));
+      const paidBtstPlan = btst?.pricing.find((p) => !p.trialPack);
+      const trialBtstPlan = btst?.pricing.find((p) => p.trialPack);
+      const debugPlan = (p: typeof paidBtstPlan) =>
+        p && {
+          planId: p.planId,
+          planIdOrder: p.planIdOrder,
+          displayDuration: p.displayDuration,
+          trialPack: p.trialPack,
+          publishToWebsite: p.publishToWebsite,
+          planPurchaseLink: p.planPurchaseLink,
+        };
+      console.log(
+        "BTST DEBUG",
+        JSON.stringify(
+          { paid: debugPlan(paidBtstPlan), trial: debugPlan(trialBtstPlan) },
+          null,
+          2,
+        ),
+      );
+    }
+
     // ── 4. Business-logic check ───────────────────────────────────────────────
     if (!data.status) {
       return NextResponse.json({

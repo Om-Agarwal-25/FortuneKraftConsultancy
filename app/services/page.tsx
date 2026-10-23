@@ -604,7 +604,9 @@ function ServicesContent(): JSX.Element {
                 realPlan={plan}
                 realProgram={program}
                 isLoadingPrices={fetchState.status === "loading"}
-                onBuyClick={() => handleBuy(premiumService, plan, program)}
+                onBuyClick={(selectedPlan) =>
+                  handleBuy(premiumService, selectedPlan, program)
+                }
                 onDescriptionClick={() => handleDescription(premiumService)}
               />
             );

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Crown, Check, ExternalLink, Star } from "lucide-react";
 import type { Service } from "@/types";
@@ -10,17 +11,42 @@ interface PremiumPlanCardProps {
   realPlan: CleanPlan | null;
   realProgram: CleanProgram | null;
   isLoadingPrices: boolean;
-  onBuyClick: () => void;
+  onBuyClick: (plan: CleanPlan | null) => void;
   onDescriptionClick: () => void;
 }
 
 export default function PremiumPlanCard({
   service,
   realPlan,
+  realProgram,
   isLoadingPrices,
   onBuyClick,
   onDescriptionClick,
 }: PremiumPlanCardProps): JSX.Element {
+  const paidPlans = useMemo(
+    () =>
+      [...(realProgram?.pricing ?? [])]
+        .filter((plan) => !plan.trialPack)
+        .sort((a, b) => a.finalPrice - b.finalPrice),
+    [realProgram],
+  );
+  const hasPlanToggle = paidPlans.length >= 2;
+  const [selectedPlanId, setSelectedPlanId] = useState<string | null>(
+    realPlan?.planId ?? null,
+  );
+
+  useEffect(() => {
+    setSelectedPlanId(realPlan?.planId ?? null);
+  }, [realPlan?.planId]);
+
+  const selectedPlan =
+    (selectedPlanId
+      ? paidPlans.find((plan) => plan.planId === selectedPlanId)
+      : undefined) ??
+    realPlan ??
+    (hasPlanToggle ? paidPlans[0] : null) ??
+    null;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -123,41 +149,65 @@ export default function PremiumPlanCard({
               ))}
             </div>
 
+            {hasPlanToggle && (
+              <div
+                className="flex flex-wrap justify-center gap-1 mb-4 p-1 rounded-full"
+                style={{ background: "rgba(10,22,40,0.45)" }}
+                aria-label="Premium plan duration"
+              >
+                {paidPlans.map((plan) => (
+                  <button
+                    key={plan.planId}
+                    type="button"
+                    aria-pressed={selectedPlan?.planId === plan.planId}
+                    onClick={() => setSelectedPlanId(plan.planId)}
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors ${
+                      selectedPlan?.planId === plan.planId
+                        ? "bg-gold text-navy"
+                        : "text-white/70 hover:text-white"
+                    }`}
+                  >
+                    {plan.displayDuration}
+                  </button>
+                ))}
+              </div>
+            )}
+
             {/* Price */}
             {isLoadingPrices ? (
               <div className="h-10 w-32 bg-white/10 animate-pulse rounded-lg mx-auto mb-4" />
-            ) : realPlan ? (
+            ) : selectedPlan ? (
               <div className="mb-4">
                 <div className="flex items-baseline justify-center gap-2 flex-wrap">
                   <span className="font-display text-3xl md:text-4xl text-gold font-bold">
-                    ₹{realPlan.finalPrice.toLocaleString("en-IN")}
+                    ₹{selectedPlan.finalPrice.toLocaleString("en-IN")}
                   </span>
                 </div>
-                {realPlan.gstApplied && (
+                {selectedPlan.gstApplied && (
                   <p className="text-white/40 text-xs mt-0.5">
-                    Incl. {realPlan.gstPercentage}% GST
+                    Incl. {selectedPlan.gstPercentage}% GST
                   </p>
                 )}
-                {realPlan.discountPercent > 0 && (
+                {selectedPlan.discountPercent > 0 && (
                   <div className="flex items-center justify-center gap-2 mt-1 flex-wrap">
                     <span className="text-white/40 text-sm line-through">
                       ₹
-                      {(realPlan.gstApplied
+                      {(selectedPlan.gstApplied
                         ? Math.round(
-                            realPlan.actualPrice *
-                              (1 + realPlan.gstPercentage / 100),
+                            selectedPlan.actualPrice *
+                              (1 + selectedPlan.gstPercentage / 100),
                           )
-                        : realPlan.actualPrice
+                        : selectedPlan.actualPrice
                       ).toLocaleString("en-IN")}
                     </span>
                     <span className="text-xs bg-gold/20 text-gold font-semibold px-2 py-0.5 rounded-full">
-                      {realPlan.discountPercent}% OFF
+                      {selectedPlan.discountPercent}% OFF
                     </span>
                   </div>
                 )}
-                {realPlan.displayDuration && (
+                {selectedPlan.displayDuration && (
                   <p className="text-white/50 text-xs mt-1">
-                    {realPlan.displayDuration} plan
+                    {selectedPlan.displayDuration} plan
                   </p>
                 )}
               </div>
@@ -171,7 +221,7 @@ export default function PremiumPlanCard({
 
             {/* Buttons */}
             <button
-              onClick={onBuyClick}
+              onClick={() => onBuyClick(selectedPlan)}
               className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-navy text-sm mb-3 hover:opacity-90 transition-opacity"
               style={{ background: "linear-gradient(90deg, #F0A500, #FFD166)" }}
             >
