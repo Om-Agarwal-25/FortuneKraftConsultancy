@@ -404,7 +404,7 @@ export const serviceDescriptions: Record<string, ServiceDescription> = {
     title: "Premium Plan",
     tagline: "The Complete FortuneKraft Research Package",
     overview:
-      "The Premium Plan is the ultimate all-in-one research subscription from FortuneKraft Consultancy. It bundles our core research services into one comprehensive package — giving you access to BTST Alpha, Positional Alpha, and Capital Compounders under a single subscription at the best value.",
+      'One Plan. Three Research Services. Get research support across different investment horizons with FortuneKraft Consultancy\'s BTST Alpha, Positional Alpha, and Capital Compounders. The plan combines short-term BTST opportunities, positional trade ideas, and long-term stock research — each shared with defined entry, stop-loss, and target levels.',
     whyChoose: [
       {
         title: "All Services in One",
